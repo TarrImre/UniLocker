@@ -1,0 +1,44 @@
+.yellow-gradient-square {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(355deg, rgba(254, 155, 75, 1) 0%, rgba(255, 208, 153, 1) 100%);
+  margin: 15px auto;
+  border-radius: 30px;
+}
+
+.blue-gradient-square {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(355deg, rgba(29, 190, 249, 1) 0%, rgba(146, 226, 255, 1) 100%);
+  margin: 15px auto;
+  border-radius: 30px;
+}
+
+.green-gradient-square {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(355deg, rgba(128, 249, 29, 1) 0%, rgba(195, 255, 146, 1) 100%);
+  margin: 15px auto;
+  border-radius: 30px;
+}
+
+.bg {
+  display: flex;
+  flex-direction: row; /* Alapértelmezett érték: A két div egymás mellé kerül */
+  gap: 20px; /* Köztes tér a div-ek között */
+  margin: 10px;
+}
+
+@media (max-width: 767px) { 
+  .bg {
+    flex-direction: column; /* A két div egymás alá kerül */
+    gap: 20px; /* Köztes tér a div-ek között */
+  }
+}
+
+.text-content {
+  position: relative;
+  z-index: 2; /* Ensure the text content stays above the icon */
+  text-align: left;
+  color: white;
+}

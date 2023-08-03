@@ -1,0 +1,47 @@
+
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+        <!-- Add to home screen for Safari on iOS -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="UniPost">
+        <link rel="apple-touch-icon" href="icons/icon-152x152_V2.png">
+
+        <link rel="stylesheet" href="/css/login.css">
+
+        <title>UniLocker</title>
+        
+     
+    </head>
+
+    <body id="body">
+        <div class="screen-1">
+            <form action="login.php" method="POST" style="padding-top:100px">
+                <div class="email" style="margin-bottom:15px;">
+                    <div class="sec-2">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="text" class="form-control" name="NeptunCode" autocomplete="off" placeholder="Neptun Code">
+                    </div>
+                </div>
+                <div class="password" style="margin-bottom:15px;">
+                    <div class="sec-2">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" class="form-control" name="Password" autocomplete="off" placeholder="Password">
+                        <ion-icon class="show-hide" name="eye-outline"></ion-icon>
+                    </div>
+                </div>
+                <button class="login" name="submit" style="width:100%;">Login</button>
+            </form>
+            <div class="footer">
+            <a class="login a_style" style="margin:5px;" href="register.php">Register</a>
+            <a class="login a_style" style="margin:5px;" href="pwa/">Installer</a>
+        </div>
+        </div>
+    </body>
+</html>

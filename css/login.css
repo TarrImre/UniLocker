@@ -1,0 +1,141 @@
+:root {
+	--mainbg: #dde5f4;
+	--lightblue: #f1f7fe;
+	--lightgray: #cacaca;
+	--boxshadow-blue:#e6e9f9;
+	--fontsize:1em;
+	--inputfontsize:1em;
+ }
+
+
+* {
+	font-family: "Poppins";
+  }
+
+  body {
+	overflow-y: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: var(--mainbg);
+	height: 100vh;
+  }
+  
+  .a_style{
+	  text-decoration: none;
+	  color: white;
+	  text-align: center;
+  }
+  .screen-1{
+	background: var(--lightblue);
+	padding: 2em;
+	display: flex;
+	flex-direction: column;
+	border-radius: 30px;
+	box-shadow: 0 0 2em var(--boxshadow-blue);
+	gap: 2em;
+	
+  }
+  .screen-1 .email {
+	background: white;
+	box-shadow: 0 0 2em var(--boxshadow-blue);
+	padding: 1em;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5em;
+	border-radius: 20px;
+	color: #4d4d4d;
+	margin-top: -3em;
+  }
+  .screen-1 .email input {
+	outline: none;
+	border: none;
+	width: 100%;
+	font-size: var(--inputfontsize);
+  }
+  .screen-1 .email input::placeholder {
+	color: var(--lightgray);
+	font-size: var(--fontsize);
+  }
+  .screen-1 .password {
+	background: white;
+	box-shadow: 0 0 2em var(--boxshadow-blue);
+	padding: 1em;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5em;
+	border-radius: 20px;
+	color: #4d4d4d;
+  }
+
+  .screen-1 .password input {
+	outline: none;
+	border: none;
+	width: 100%;
+	font-size: var(--inputfontsize);
+  }
+  .screen-1 .password input::placeholder {
+	color: var(--lightgray);
+	font-size: var(--fontsize);
+  }
+  .screen-1 .password ion-icon {
+	color: #4d4d4d;
+	margin-bottom: -0.2em;
+  }
+  .screen-1 .password .show-hide {
+	margin-right: -5em;
+  }
+  .screen-1 .login {
+	padding: 1em;
+	background: #3e4684;
+	color: white;
+	border: none;
+	border-radius: 30px;
+	font-weight: 600;
+	width: 10em;
+  }
+  .screen-1 .footer {
+	display: flex;
+	font-size: 0.7em;
+	color: #5e5e5e;
+	padding-bottom: 10em;
+  }
+  .screen-1 .footer span {
+	cursor: pointer;
+  }
+  
+  button {
+	cursor: pointer;
+  }
+
+
+
+
+
+
+
+
+
+.topnav {
+	overflow: hidden;
+	background-color: #333;
+}
+  
+.topnav a {
+	float: left;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+}
+  
+.topnav a:hover {
+	background-color: #ddd;
+	color: black;
+}
+  
+.topnav a.active {
+	background-color: #04AA6D;
+	color: white;
+}

@@ -1,0 +1,46 @@
+/* A teljes képernyős overlay, rejtett alapállapotban */
+.overlay {
+  position: fixed;
+  width: 100%;
+  padding: 10px 0;
+  display: block;
+}
+
+/* Gomb stílus */
+.overlay-button {
+  margin: 0 auto;
+  background: linear-gradient(355deg, rgba(254,155,75,1) 0%, rgba(255,208,153,1) 100%);
+  color: white;
+  box-shadow: 0px 5px 20px -5px rgba(254, 155, 75, 1);
+  -webkit-box-shadow: 0px 5px 20px -5px rgba(254, 155, 75, 1);
+  -moz-box-shadow: 0px 5px 20px -5px rgba(254, 155, 75, 1);
+  font-size: 32px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  width: 64px;
+  height: 64px;
+  transition: all 0.3s ease-in-out;
+}
+
+.overlay-button:hover {
+  color: #fefefe;
+  opacity: 0.85;
+}
+
+/* Responsív stílus a kisebb képernyőkre (pl. telefonok) */
+@media (max-width: 767px) {
+  .overlay {
+    bottom: 100px;
+    right: 140px; /* A gomb 10px-re legyen a kijelző bal szélétől */
+  }
+}
+/* Responsív stílus a nagyobb képernyőkre */
+@media (min-width: 768px) {
+  .overlay {
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
