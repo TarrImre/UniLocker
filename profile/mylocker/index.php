@@ -13,7 +13,7 @@
     include('../header.php');
 
   ?>
-    <link rel="stylesheet" href="../../css/svglock.css">
+    <link rel="stylesheet" href="../../scss/css/svglock.css">
 </head>
 
 <body>

@@ -1,0 +1,60 @@
+svg.lock {
+  width: 300px;
+  height: auto;
+  -webkit-tap-highlight-color: transparent;
+  transform-origin: center top;
+  cursor: pointer;
+  padding: 1rem;
+  transition: width 0.5s, height 0.5s;
+}
+
+.fill-mask {
+  fill: none;
+}
+
+.top-part {
+  fill: none;
+  stroke: #1dbef9;
+  stroke-miterlimit: 10;
+  stroke-linecap: round;
+  stroke-width: 15.39px;
+  transition: all 300ms;
+  transition-delay: 200ms;
+}
+
+.bottom-part {
+  fill: none;
+  stroke: #1dbef9;
+  stroke-miterlimit: 10;
+  stroke-width: 15px;
+}
+
+.fill-mask-group {
+  -webkit-clip-path: url(#clip-path);
+          clip-path: url(#clip-path);
+}
+
+.fill-circle {
+  fill: #1dbef9;
+  transition: all 300ms;
+}
+
+.lock.closed .fill-circle {
+  transition-delay: 270ms;
+  r: 180;
+}
+.lock.closed .top-part {
+  transition-delay: 150ms;
+  d: path("M41.5,93.69V56.93A49.24,49.24,0,0,1,90.73,7.69h2.54A49.24,49.24,0,0,1,142.5,56.93v33");
+}
+
+@media (max-width: 768px) {
+  svg.lock {
+    width: 300px;
+  }
+}
+@media (max-width: 600px) {
+  svg.lock {
+    width: 75%;
+  }
+}

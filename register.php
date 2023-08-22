@@ -18,7 +18,7 @@
 	<meta name="msapplication-TileColor" content="#1b6de1">
 	<meta name="theme-color" content="#1b6de1">
 
-	<link type="text/css" rel="stylesheet" href="css/login.css" />
+	<link type="text/css" rel="stylesheet" href="scss/css/login.css" />
 
 	<title>UniLocker | Regisztráció</title>
 

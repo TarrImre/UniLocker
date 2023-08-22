@@ -3,8 +3,8 @@
 
 <link rel="stylesheet" type="text/css" href="../../scss/css/checkbox.css">
 <link rel="stylesheet" type="text/css" href="../../scss/css/main.css">
-<link rel="stylesheet" type="text/css" href="../../css/table.css">
-<link rel="stylesheet" type="text/css" href="../../css/overlay.css">
+<link rel="stylesheet" type="text/css" href="../../scss/css/table.css">
+<link rel="stylesheet" type="text/css" href="../../scss/css/overlay.css">
 <link rel="stylesheet" type="text/css" href="../../scss/css/adminlayout.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">

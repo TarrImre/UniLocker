@@ -27,7 +27,7 @@ require "lang/lang-" . $_SESSION["lang"] . ".php"; ?>
     <meta name="apple-mobile-web-app-title" content="UniPost">
     <link rel="apple-touch-icon" href="icons/icon-152x152_V2.png">
 
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="scss/css/login.css">
 
     <title><?= $_TXT[0] ?></title>
 

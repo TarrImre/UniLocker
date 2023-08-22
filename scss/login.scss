@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
+$mainbg: #eef1fb;
+$secbg: #FFF;
+$lightblue: #1dbef9;
+$darklightblue: #3498db;
+$lightgray: #cacaca;
+$boxshadow-blue: #e6e9f9;
+$fontsize: 1em;
+$inputfontsize: 1em;
+$body-font: 'Poppins', sans-serif;
+
+* {
+    font-family: $body-font;
+}
+
+body {
+    overflow-y: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $mainbg;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.a_style {
+    text-decoration: none;
+    color: white;
+    text-align: center;
+}
+
+.screen-1 {
+    background: $secbg;
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    border-radius: 30px;
+    gap: 2em;
+    width: 300px;
+    height: auto;
+    opacity: 0.95;
+
+    .email {
+        background: white;
+        box-shadow: 0 0 2em $boxshadow-blue;
+        padding: 1em;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        border-radius: 20px;
+        color: #4d4d4d;
+        margin-top: -3em;
+
+        input {
+            outline: none;
+            border: none;
+            width: 100%;
+            font-size: $inputfontsize;
+
+            &::placeholder {
+                color: $lightgray;
+                font-size: $fontsize;
+            }
+        }
+    }
+
+    .password {
+        background: white;
+        box-shadow: 0 0 2em $boxshadow-blue;
+        padding: 1em;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        border-radius: 20px;
+        color: #4d4d4d;
+
+        input {
+            outline: none;
+            border: none;
+            width: 100%;
+            font-size: $inputfontsize;
+
+            &::placeholder {
+                color: $lightgray;
+                font-size: $fontsize;
+            }
+        }
+
+        /*ion-icon {
+			color: #4d4d4d;
+			margin-bottom: -0.2em;
+		}*/
+
+        .show-hide {
+            margin-right: -5em;
+        }
+    }
+
+    .login {
+        padding: 1em;
+        background: $darklightblue;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        font-weight: 600;
+        width: 10em;
+        transition: 0.5s;
+        font-size: $fontsize;
+
+        &:hover {
+            background: $lightblue;
+        }
+    }
+
+    .register {
+        padding: 1em;
+        background: $darklightblue;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        font-weight: 500;
+        width: 10em;
+        transition: 0.5s;
+    }
+
+    .footer {
+        display: flex;
+        font-size: 0.7em;
+        color: #5e5e5e;
+        padding-bottom: 10em;
+
+        span {
+            cursor: pointer;
+        }
+    }
+
+}
+
+button {
+    cursor: pointer;
+}
+
+
+
+
+.left-circle {
+    width: 500px;
+    height: 500px;
+    background-color: $darklightblue;
+    border-radius: 0 500px 0 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    transition: width 0.5s, height 0.5s;
+}
+
+@media screen and (max-width: 768px) {
+    .left-circle {
+        width: 350px;
+        height: 350px;
+    }
+}
+
+.middle {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.languageButton {
+    width: 32px;
+    height: 32px;
+    background-color: $darklightblue;
+    border: 0px;
+    border-radius: 10px;
+
+    img {
+        width: 16px;
+        height: 13px;
+    }
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+
+    a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+
+        &:hover {
+            background-color: #ddd;
+            color: black;
+        }
+    }
+
+    a.active {
+        background-color: #04AA6D;
+        color: white;
+    }
+
+}

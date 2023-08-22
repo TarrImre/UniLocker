@@ -18,12 +18,12 @@
   width: 64px;
   height: 64px;
   transition: all 0.3s ease-in-out;
+  &:hover {
+    color: #fefefe;
+    opacity: 0.85;
+  }
 }
 
-.overlay-button:hover {
-  color: #fefefe;
-  opacity: 0.85;
-}
 
 /* Responsív stílus a kisebb képernyőkre (pl. telefonok) */
 @media (max-width: 767px) {
