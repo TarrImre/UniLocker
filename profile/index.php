@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 ?>
 <html>
@@ -9,8 +8,7 @@ session_start();
 </head>
 
 <body>
-   <?php include('content.php'); ?> 
-  
+  <?php include('content.php'); ?>
 </body>
 
 </html>

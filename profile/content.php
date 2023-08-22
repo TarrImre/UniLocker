@@ -1,31 +1,27 @@
 ﻿<?php
 if (isset($_SESSION['neptuncode'])) {
   include('../connection.php');
+  include('nav.php');
 ?>
-
-<?php include('nav.php'); ?>
-
   <div class="middle">
     <?php
-     
-    $neptuncode = $_SESSION['neptuncode'];
-    $sql = "SELECT id, NeptunCode FROM led WHERE NeptunCode = '$neptuncode'";
-    $result = mysqli_query($conn, $sql);
+      $neptuncode = $_SESSION['neptuncode'];
+      $sql = "SELECT id, NeptunCode FROM led WHERE NeptunCode = '$neptuncode'";
+      $result = $conn->query($sql);
+      if ($result) {
 
-    if ($result) {
-
-      if (mysqli_num_rows($result) > 0) {
-        //echo "true";
-        header("Location: mylocker/index.php");
-        exit;
+        if (mysqli_num_rows($result) > 0) {
+          //echo "true";
+          header("Location: mylocker/index.php");
+          exit;
+        } else {
+          //echo "false";
+          header("Location: locker/index.php");
+          exit;
+        }
       } else {
-        //echo "false";
-        header("Location: locker/index.php");
-        exit;
+        echo "result false";
       }
-    } else {
-      echo "result false";
-    }
     ?>
   </div>
 <?php

@@ -1,11 +1,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<link rel="stylesheet" type="text/css" href="../../css/checkbox.css">
-<link rel="stylesheet" type="text/css" href="../../css/main.css">
+<link rel="stylesheet" type="text/css" href="../../scss/css/checkbox.css">
+<link rel="stylesheet" type="text/css" href="../../scss/css/main.css">
 <link rel="stylesheet" type="text/css" href="../../css/table.css">
 <link rel="stylesheet" type="text/css" href="../../css/overlay.css">
-<link rel="stylesheet" type="text/css" href="../../css/adminlayout.css">
+<link rel="stylesheet" type="text/css" href="../../scss/css/adminlayout.css">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 <meta http-equiv="Access-Control-Allow-Origin" content="*" />

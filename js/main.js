@@ -1,4 +1,4 @@
-
+//Árnyékot tesz a navbarra, ha telefonon van
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
 const sections = document.querySelectorAll('section[id]')
 

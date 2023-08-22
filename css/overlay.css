@@ -1,9 +1,6 @@
 /* A teljes képernyős overlay, rejtett alapállapotban */
 .overlay {
-  position: fixed;
-  width: 100%;
-  padding: 10px 0;
-  display: block;
+    position: fixed;
 }
 
 /* Gomb stílus */
@@ -32,7 +29,7 @@
 @media (max-width: 767px) {
   .overlay {
     bottom: 100px;
-    right: 140px; /* A gomb 10px-re legyen a kijelző bal szélétől */
+    left: 10px; /* A gomb 10px-re legyen a kijelző bal szélétől */
   }
 }
 /* Responsív stílus a nagyobb képernyőkre */

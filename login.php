@@ -47,6 +47,7 @@ session_start()
     <style>
     body{
         background-color: #DDE5F4;
+        font-family: 'Poppins', sans-serif;
     }
     </style>
 </head>

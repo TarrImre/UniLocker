@@ -2,9 +2,9 @@
 include('../../connection.php');
 
 $sql = "SELECT * FROM users";
-$result = mysqli_query($conn, $sql);
-$resultCheck = mysqli_num_rows($result);
+$result = $conn->query($sql);
 ?>
+
 <table style="background-color: #fafafa;">
   <thead>
     <tr>
@@ -21,10 +21,10 @@ $resultCheck = mysqli_num_rows($result);
   </thead>
   <tbody>
     <?php
-    if ($resultCheck > 0) {
-        while ($row = mysqli_fetch_array($result)) {
-            $id = $row['id'];
-            echo  '<tr>
+    if ($result->num_rows > 0) {
+      while ($row  = mysqli_fetch_array($result)) {
+        $id = $row['id'];
+        echo  '<tr>
               <td data-label="Id">' . $id . '</td>
               <td data-label="Vezetéknév">' . $row['VName'] . '</td>
               <td data-label="Keresztnév">' . $row['KName'] . '</td>
@@ -35,11 +35,10 @@ $resultCheck = mysqli_num_rows($result);
               <td data-label="Létrehozva">' . $row['CreatedAT'] . '</td>
               <td data-label="Rang">' . $row['Rank'] . '</td>
             </tr>';
-        }
+      }
     } else {
-        echo '<tr><td colspan="9">No data found</td></tr>';
+      echo '<tr><td colspan="9">No data found</td></tr>';
     }
     ?>
   </tbody>
 </table>
-
