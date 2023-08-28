@@ -1,10 +1,6 @@
+@use 'colors';
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap');
-$mainbg: #eef1fb;
-$secbg: #FFF;
-$lightblue: #1dbef9;
-$darklightblue: #3498db;
-$lightgray: #cacaca;
-$boxshadow-blue: #e6e9f9;
+
 $fontsize: 1em;
 $inputfontsize: 1em;
 $body-font: 'Poppins', sans-serif;
@@ -14,24 +10,33 @@ $body-font: 'Poppins', sans-serif;
 }
 
 body {
-    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+    background: colors.$darkwhite-color;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+.container{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: $mainbg;
-    height: 100vh;
-    overflow: hidden;
+    height: 90vh;
+    margin: 0;
+    padding: 0;
 }
 
 .a_style {
     text-decoration: none;
-    color: white;
+    color: colors.$white-color;
     text-align: center;
 }
 
 .screen-1 {
-    background: $secbg;
-    padding: 2em;
+    background: colors.$white-color;
+    padding: 0em 2em 2em 2em;
     display: flex;
     flex-direction: column;
     border-radius: 30px;
@@ -39,16 +44,17 @@ body {
     width: 300px;
     height: auto;
     opacity: 0.95;
+    
 
     .email {
-        background: white;
-        box-shadow: 0 0 2em $boxshadow-blue;
+        background: colors.$white-color;
+        box-shadow: 0 0 2em rgba(colors.$box-shadow-color, 0.5);
         padding: 1em;
         display: flex;
         flex-direction: column;
         gap: 0.5em;
         border-radius: 20px;
-        color: #4d4d4d;
+        color: rgba(colors.$darkgrey-color,0.7);
         margin-top: -3em;
 
         input {
@@ -58,21 +64,21 @@ body {
             font-size: $inputfontsize;
 
             &::placeholder {
-                color: $lightgray;
+                color: rgba(colors.$lightgrey-color, 0.6);
                 font-size: $fontsize;
             }
         }
     }
 
     .password {
-        background: white;
-        box-shadow: 0 0 2em $boxshadow-blue;
+        background: colors.$white-color;
+        box-shadow: 0 0 2em rgba(colors.$box-shadow-color, 0.5);
         padding: 1em;
         display: flex;
         flex-direction: column;
         gap: 0.5em;
         border-radius: 20px;
-        color: #4d4d4d;
+        color:  rgba(colors.$darkgrey-color,0.7);
 
         input {
             outline: none;
@@ -81,7 +87,7 @@ body {
             font-size: $inputfontsize;
 
             &::placeholder {
-                color: $lightgray;
+                color: rgba(colors.$lightgrey-color, 0.6);
                 font-size: $fontsize;
             }
         }
@@ -98,8 +104,8 @@ body {
 
     .login {
         padding: 1em;
-        background: $darklightblue;
-        color: white;
+        background: colors.$dark-blue-color;
+        color: colors.$white-color;
         border: none;
         border-radius: 30px;
         font-weight: 600;
@@ -108,14 +114,14 @@ body {
         font-size: $fontsize;
 
         &:hover {
-            background: $lightblue;
+            background: colors.$blue-color;
         }
     }
 
     .register {
         padding: 1em;
-        background: $darklightblue;
-        color: white;
+        background: colors.$dark-blue-color;
+        color: colors.$white-color;
         border: none;
         border-radius: 30px;
         font-weight: 500;
@@ -126,7 +132,7 @@ body {
     .footer {
         display: flex;
         font-size: 0.7em;
-        color: #5e5e5e;
+        color: rgba(colors.$darkgrey-color,0.7);
         padding-bottom: 10em;
 
         span {
@@ -146,7 +152,7 @@ button {
 .left-circle {
     width: 500px;
     height: 500px;
-    background-color: $darklightblue;
+    background-color: colors.$dark-blue-color;
     border-radius: 0 500px 0 0;
     position: absolute;
     bottom: 0;
@@ -163,8 +169,6 @@ button {
 }
 
 .middle {
-    width: 100%;
-    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -174,7 +178,7 @@ button {
 .languageButton {
     width: 32px;
     height: 32px;
-    background-color: $darklightblue;
+    background-color: colors.$dark-blue-color;
     border: 0px;
     border-radius: 10px;
 
@@ -186,25 +190,43 @@ button {
 
 .topnav {
     overflow: hidden;
-    background-color: #333;
+    background-color: colors.$darkgrey-color;
 
     a {
         float: left;
-        color: #f2f2f2;
+        color: colors.$lightwhite-color;
         text-align: center;
         padding: 14px 16px;
         text-decoration: none;
         font-size: 17px;
 
         &:hover {
-            background-color: #ddd;
-            color: black;
+            background-color: colors.$darkwhite-color;
+            color: colors.$black-color;
         }
     }
 
     a.active {
-        background-color: #04AA6D;
-        color: white;
+        background-color: colors.$green-color;
+        color: colors.$white-color;
     }
 
+}
+
+
+.box {
+    box-shadow: 0px 2px 10px rgba(colors.$black-color, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   
+}
+
+.blue {
+    //background-color: #99c2ff;
+    background-color: rgba(colors.$dark-blue-color, 0.3);
+    color: colors.$dark-blue-color;
 }

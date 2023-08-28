@@ -1,4 +1,4 @@
-
+@use 'colors';
 @-webkit-keyframes LinearShake {
 	0%   { transform: translateY(0px); }
 	70%  { transform: translateY(-20px); }
@@ -24,7 +24,7 @@ svg.lock {
 }
 .top-part {
 	fill: none;
-	stroke: #1dbef9;
+	stroke: colors.$blue-color;
 	stroke-miterlimit: 10;
 	stroke-linecap: round;
 	stroke-width: 15.39px;
@@ -33,7 +33,7 @@ svg.lock {
 }
 .bottom-part {
 	fill: none;
-	stroke: #1dbef9;
+	stroke: colors.$blue-color;
 	stroke-miterlimit: 10;
 	stroke-width: 15px;
 }

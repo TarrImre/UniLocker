@@ -4,24 +4,34 @@
 }
 
 body {
-  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #eef1fb;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #eef1fb;
-  height: 100vh;
-  overflow: hidden;
+  height: 90vh;
+  margin: 0;
+  padding: 0;
 }
 
 .a_style {
   text-decoration: none;
-  color: white;
+  color: #FFF;
   text-align: center;
 }
 
 .screen-1 {
   background: #FFF;
-  padding: 2em;
+  padding: 0em 2em 2em 2em;
   display: flex;
   flex-direction: column;
   border-radius: 30px;
@@ -31,14 +41,14 @@ body {
   opacity: 0.95;
 }
 .screen-1 .email {
-  background: white;
-  box-shadow: 0 0 2em #e6e9f9;
+  background: #FFF;
+  box-shadow: 0 0 2em rgba(193, 207, 212, 0.5);
   padding: 1em;
   display: flex;
   flex-direction: column;
   gap: 0.5em;
   border-radius: 20px;
-  color: #4d4d4d;
+  color: rgba(51, 51, 51, 0.7);
   margin-top: -3em;
 }
 .screen-1 .email input {
@@ -48,22 +58,22 @@ body {
   font-size: 1em;
 }
 .screen-1 .email input::-moz-placeholder {
-  color: #cacaca;
+  color: rgba(136, 136, 136, 0.6);
   font-size: 1em;
 }
 .screen-1 .email input::placeholder {
-  color: #cacaca;
+  color: rgba(136, 136, 136, 0.6);
   font-size: 1em;
 }
 .screen-1 .password {
-  background: white;
-  box-shadow: 0 0 2em #e6e9f9;
+  background: #FFF;
+  box-shadow: 0 0 2em rgba(193, 207, 212, 0.5);
   padding: 1em;
   display: flex;
   flex-direction: column;
   gap: 0.5em;
   border-radius: 20px;
-  color: #4d4d4d;
+  color: rgba(51, 51, 51, 0.7);
   /*ion-icon {
   	color: #4d4d4d;
   	margin-bottom: -0.2em;
@@ -76,11 +86,11 @@ body {
   font-size: 1em;
 }
 .screen-1 .password input::-moz-placeholder {
-  color: #cacaca;
+  color: rgba(136, 136, 136, 0.6);
   font-size: 1em;
 }
 .screen-1 .password input::placeholder {
-  color: #cacaca;
+  color: rgba(136, 136, 136, 0.6);
   font-size: 1em;
 }
 .screen-1 .password .show-hide {
@@ -89,7 +99,7 @@ body {
 .screen-1 .login {
   padding: 1em;
   background: #3498db;
-  color: white;
+  color: #FFF;
   border: none;
   border-radius: 30px;
   font-weight: 600;
@@ -103,7 +113,7 @@ body {
 .screen-1 .register {
   padding: 1em;
   background: #3498db;
-  color: white;
+  color: #FFF;
   border: none;
   border-radius: 30px;
   font-weight: 500;
@@ -113,7 +123,7 @@ body {
 .screen-1 .footer {
   display: flex;
   font-size: 0.7em;
-  color: #5e5e5e;
+  color: rgba(51, 51, 51, 0.7);
   padding-bottom: 10em;
 }
 .screen-1 .footer span {
@@ -143,8 +153,6 @@ button {
   }
 }
 .middle {
-  width: 100%;
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -165,21 +173,36 @@ button {
 
 .topnav {
   overflow: hidden;
-  background-color: #333;
+  background-color: #333333;
 }
 .topnav a {
   float: left;
-  color: #f2f2f2;
+  color: #fafafa;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
 }
 .topnav a:hover {
-  background-color: #ddd;
-  color: black;
+  background-color: #eef1fb;
+  color: #000;
 }
 .topnav a.active {
-  background-color: #04AA6D;
-  color: white;
+  background-color: #44cc66;
+  color: #FFF;
+}
+
+.box {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.blue {
+  background-color: rgba(52, 152, 219, 0.3);
+  color: #3498db;
 }

@@ -7,8 +7,8 @@
 /* Gomb stílus */
 .overlay-button {
   margin: 0 auto;
-  background: linear-gradient(355deg, rgb(254, 155, 75) 0%, rgb(255, 208, 153) 100%);
-  color: white;
+  background: linear-gradient(355deg, #fe9b4b 0%, rgb(255, 208, 153) 100%);
+  color: #FFF;
   box-shadow: 0px 5px 20px -5px rgb(254, 155, 75);
   -webkit-box-shadow: 0px 5px 20px -5px rgb(254, 155, 75);
   -moz-box-shadow: 0px 5px 20px -5px rgb(254, 155, 75);
@@ -21,7 +21,7 @@
   transition: all 0.3s ease-in-out;
 }
 .overlay-button:hover {
-  color: #fefefe;
+  color: #fafafa;
   opacity: 0.85;
 }
 

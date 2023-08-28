@@ -41,16 +41,28 @@ if (!("NDEFReader" in window))
     ChromeSamples.setStatus("NFC nem elérhető!");
 
 scanButton.addEventListener("click", async () => {
+    const circles = document.querySelectorAll('.circle');
+    const randomtext = document.getElementById("randomtext");
+    //scanButton.style.display = "none";
+
+    circles.forEach(circle => {
+        circle.style.backgroundColor = "#1dbef9";
+    });
 
     //log("User clicked scan button");
 
     try {
         const ndef = new NDEFReader();
         await ndef.scan();
-        document.getElementById("Unipass").value = ("Beolvasás...");
-
+        document.getElementById("Unipass").value = ("ERROR");
+        randomtext.innerHTML = "Beolvasás...";
+        
         ndef.addEventListener("readingerror", () => {
-            document.getElementById("Unipass").value = ("Ezt a kártyát nem tudom beolvasni!");
+            document.getElementById("Unipass").value = ("ERROR");
+            randomtext.innerHTML = "Ezt a kártyát nem tudom beolvasni!";
+            circles.forEach(circle => {
+                circle.style.backgroundColor = "#f57a7a";
+            });
         });
 
         ndef.addEventListener("reading", ({
@@ -67,9 +79,16 @@ scanButton.addEventListener("click", async () => {
             }
             const formattedSerialNumber = parts.join('');
             document.getElementById("Unipass").value = formattedSerialNumber;
+            randomtext.innerHTML = "Kész!";
+           
+            //make the circles style background color to green
+            circles.forEach(circle => {
+                circle.style.backgroundColor = "#44cc66";
+            });
             //log(`> Records: (${message.records.length})`);
         });
     } catch (error) {
-        document.getElementById("Unipass").value = ("Hiba " /*+error*/);
+        document.getElementById("Unipass").value = ("ERROR" /*+error*/);
+        //randomtext.innerHTML = "Hiba " /*+error*/;
     }
 });

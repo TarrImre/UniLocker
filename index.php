@@ -34,6 +34,7 @@ require "lang/lang-" . $_SESSION["lang"] . ".php"; ?>
 </head>
 
 <body id="body">
+<div class="container">
     <div class="screen-1">
         <div class="middle">
             <h1><?= $_TXT[1] ?></h1>
@@ -69,8 +70,10 @@ require "lang/lang-" . $_SESSION["lang"] . ".php"; ?>
                 <button class="languageButton"><img src="icons/flags/arab.jpg" alt="Arabic" title="Arabic"></button>-->
         </div>
     </div>
+    </div>
     <div class="left-circle"></div>
     <!--<div class="right-circle"></div>-->
+
 </body>
 
 </html>

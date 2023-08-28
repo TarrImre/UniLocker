@@ -1,11 +1,4 @@
-$yellow-gradient-color: linear-gradient(355deg, rgba(254, 155, 75, 1) 0%, rgba(255, 208, 153, 1) 100%);
-$blue-gradient-color: linear-gradient(355deg, rgba(29, 190, 249, 1) 0%, rgba(146, 226, 255, 1) 100%);
-$green-gradient-color: linear-gradient(355deg, rgba(128, 249, 29, 1) 0%, rgba(195, 255, 146, 1) 100%);
-$white: #fff;
-$box-shadow-color: #c1cfd4;
-$lightgrey-color: #888888;
-
-$blue: rgba(0, 123, 255, 0.8);
+@use 'colors';
 
 .bg {
     display: flex;
@@ -42,7 +35,7 @@ $blue: rgba(0, 123, 255, 0.8);
 }
 
 .statbg {
-    background-color: $white;
+    background-color: colors.$white-color;
     width: 90px;
     height: 120px;
     border-radius: 15px;
@@ -51,7 +44,7 @@ $blue: rgba(0, 123, 255, 0.8);
 }
 
 .statwide {
-    background-color: $white;
+    background-color: colors.$white-color;
     width: 310px;
     height: 120px;
     border-radius: 15px;
@@ -60,7 +53,7 @@ $blue: rgba(0, 123, 255, 0.8);
 }
 
 .lockernumber_panels {
-    background-color: $white;
+    background-color: colors.$white-color;
     width: 310px;
     height: 150px;
     border-radius: 15px;
@@ -76,8 +69,8 @@ $blue: rgba(0, 123, 255, 0.8);
 
 
 .stat-box {
-    background-color: #ffffff;
-    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: colors.$white-color;
+    box-shadow: 0px 2px 10px colors.$box-shadow-color;
     border-radius: 10px;
     padding: 30px;
     text-align: center;
@@ -102,18 +95,18 @@ $blue: rgba(0, 123, 255, 0.8);
 .stat-value {
     font-size: 26px;
     font-weight: bold;
-    color: $blue;
+    color: colors.$dark-blue-color;
 }
 
 .stat-label {
     font-size: 14px;
-    color: #777777;
+    color: colors.$lightgrey-color;
 }
 
 .stat-icon {
     width: 70px;
     height: 70px;
-    background-color: $blue;
+    background-color: colors.$dark-blue-color;
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -121,7 +114,7 @@ $blue: rgba(0, 123, 255, 0.8);
     transition: width 0.5s, height 0.5s;
     i {
         font-size: 36px;
-        color: $white;
+        color: colors.$white-color;
     }
 }
 
@@ -145,16 +138,16 @@ $blue: rgba(0, 123, 255, 0.8);
     margin-top: 10px;
     padding: 5px 15px;
     background-color: transparent;
-    border: 2px solid $blue;
+    border: 2px solid colors.$dark-blue-color;
     border-radius: 30px;
     font-size: 15px;
-    color: $blue;
+    color: colors.$dark-blue-color;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
 
     &:hover {
-        background-color: $blue;
-        color: $white;
+        background-color: colors.$dark-blue-color;
+        color: colors.$white-color;
     }
 }
 

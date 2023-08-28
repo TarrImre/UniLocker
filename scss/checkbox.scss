@@ -1,6 +1,5 @@
-$green-color: #44cc66;
-$blue-color: #1dbef9;
-$blue-box-shadow: rgba(29, 190, 249, 0.75);
+@use 'colors';
+
 * {
     -webkit-tap-highlight-color: transparent;
 }
@@ -13,14 +12,14 @@ $blue-box-shadow: rgba(29, 190, 249, 0.75);
 	input[type="checkbox"] {
 		display: none;
 		&:checked+.toggler-slider {
-			background-color: $green-color;
+			background-color: colors.$green-color;
 		}
 	}
 	.toggler-slider {
-		background-color: $blue-color;
-		box-shadow: 0px 3px 20px -5px $blue-box-shadow;
-		-webkit-box-shadow: 0px 3px 20px -5px $blue-box-shadow;
-		-moz-box-shadow: 0px 3px 20px -5px $blue-box-shadow;
+		background-color: colors.$blue-color;
+		box-shadow: 0px 3px 20px -5px colors.$blue-box-shadow;
+		-webkit-box-shadow: 0px 3px 20px -5px colors.$blue-box-shadow;
+		-moz-box-shadow: 0px 3px 20px -5px colors.$blue-box-shadow;
 		position: absolute;
 		border-radius: 30px;
 		top: 0;
@@ -40,12 +39,12 @@ $blue-box-shadow: rgba(29, 190, 249, 0.75);
 .buttons-wrapper {
 	>div {
 		display: inline-block;
-		background-color: #fff;
+		background-color: colors.$white-color;
 		padding: 20px;
 		margin: 5px;
 		width: auto;
 		border-radius: 8px;
-		border: 1px solid rgba(200, 200, 200, 0.1);
+		border: 1px solid rgba(colors.$lightgrey-color, 0.1);
 	}
 	display: flex;
 	justify-content: center;
