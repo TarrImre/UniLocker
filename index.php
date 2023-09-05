@@ -33,7 +33,7 @@ require "lang/lang-" . $_SESSION["lang"] . ".php"; ?>
 
 </head>
 
-<body id="body">
+<body>
 <div class="container">
     <div class="screen-1">
         <div class="middle">
@@ -51,7 +51,7 @@ require "lang/lang-" . $_SESSION["lang"] . ".php"; ?>
         </form>
         <div class="footer">
             <a class="register a_style" style="margin:5px;" href="register.php"><?= $_TXT[5] ?></a>
-            <a class="register a_style" style="margin:5px;" href="pwa/"><?= $_TXT[6] ?></a>
+            <a class="register a_style" style="margin:5px;" href="pwa/" class="pwa"><?= $_TXT[6] ?></a>
         </div>
         <div class="middle">
             <form method="post">

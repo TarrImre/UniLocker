@@ -2,6 +2,7 @@
 session_start();
 include('../../connection.php');
 include('../header.php');
+include('../apikeyfunction.php');
 
 if (isset($_POST['update'])) {
     $id = $_SESSION['id'];
@@ -28,12 +29,12 @@ if (isset($_POST['update'])) {
   
     // Check if any field is updated, and if the NeptunCode exists in the "led" table
     if ($result && (!empty($vname) || !empty($kname) || !empty($email) || !empty($password) || !empty($neptuncode) || !empty($unipasscode))) {
-        $sql = "SELECT id, status FROM led WHERE NeptunCode = '$neptuncode'";
+        $sql = "SELECT id, status FROM lockers WHERE NeptunCode = '$neptuncode'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 // Update the API with UniPassCode only
-                $json = file_get_contents('https://api.toxy.hu/update.php?id='.$row["id"].'&status=off&NeptunCode='.$neptuncode.'&UniPassCode='.$unipasscode.'');
+                $json = file_get_contents('http://api.toxy.hu/update.php?id='.$row["id"].'&status=off&NeptunCode='.$neptuncode.'&UniPassCode='.$unipasscode.'&apikey='.getApiKey().'');
                 $obj = json_decode($json);
             }
         }
@@ -52,12 +53,12 @@ if (isset($_POST['delete'])) {
     $id = $_SESSION['id'];
 
     // Check if the NeptunCode exists in the "led" table
-    $sql = "SELECT id, NeptunCode FROM led WHERE NeptunCode = '$neptuncode'";
+    $sql = "SELECT id, NeptunCode FROM lockers WHERE NeptunCode = '$neptuncode'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             // Update the API with status "off" and empty NeptunCode and UniPassCode
-            $json = file_get_contents('https://api.toxy.hu/update.php?id=' . $row["id"] . '&status=off&NeptunCode=&UniPassCode=');
+            $json = file_get_contents('http://api.toxy.hu/update.php?id=' . $row["id"] . '&status=off&NeptunCode=&UniPassCode=&apikey=' . getApiKey() . '');
             $obj = json_decode($json);
         }
     }

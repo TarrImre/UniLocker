@@ -7,8 +7,7 @@
   <title>Szekrényem</title>
 
   <?php
-  session_start();
-  if (isset($_SESSION['neptuncode'])) {
+    include('../session_check.php'); // Itt hívjuk meg a session ellenőrzés fájlt
     include('../../connection.php');
     include('../header.php');
 
@@ -18,35 +17,32 @@
 
 <body>
   <?php include('../nav.php'); ?>
-  <div class="middle">
-    <div class="screen-1">
-      <h1 style="font-family: Helvetica; color: black">A szekrényed</h1>
-      <div class="center">
-        <div class="form">
+  <div class="middle" style="background-color:transparent;box-shadow:none;">
+    <!--h1>A szekrényed</h1-->
+    <?php
+    //VARIABLES
+    $neptunCode = $_SESSION['neptuncode'];
+
+    $UniPassCode = $_SESSION['UniPassCode'];
+    $empty = "";
+    $msg = "";
+    $availableLocker = true;
+    include('../apikeyfunction.php');
+    ?>
+
+    <?php
+    //Select my neptuncode from the database and write out with id
 
 
-          <?php
-          //VARIABLES
-          $neptunCode = $_SESSION['neptuncode'];
+    $sql = "SELECT id, NeptunCode, UniPassCode FROM lockers WHERE NeptunCode = '$neptunCode'";
+    $result = $conn->query($sql);
 
-          $UniPassCode = $_SESSION['UniPassCode'];
-          $empty = "";
-          $msg = "";
-          $availableLocker = true;
-          ?>
+    if ($result->num_rows > 0) {
+      // output data of each row
+      while ($row = $result->fetch_assoc()) {
 
-          <?php
-          //Select my neptuncode from the database and write out with id
-
-
-          $sql = "SELECT id, NeptunCode, UniPassCode FROM led WHERE NeptunCode = '$neptunCode'";
-          $result = $conn->query($sql);
-
-          if ($result->num_rows > 0) {
-            // output data of each row
-            while ($row = $result->fetch_assoc()) {
-              echo "<br> Szekrényed: " . $row["id"] . " - Neptun kód: " . $row["NeptunCode"] . "<br><br>";
-            /*  echo '<button type="button" id="D2-on" class="button button1">Nyit</button>
+        echo "<h1 style='margin-bottom:30px;' class='font_bold'>Szekrényszám: " . $row["id"] . "</h1>";
+        /*  echo '<button type="button" id="D2-on" class="button button1">Nyit</button>
                   <button type="button" id="D2-off" class="button button1">Zár...</button>';
 
               echo '<script type="text/javascript">
@@ -72,8 +68,8 @@
         
                   </script>';*/
 
-
-              echo '<svg id="toggleButton" class="lock closed" viewBox="0 0 184 220.19">
+        echo '<div class="circle">';
+        echo '<svg id="toggleButton" class="lock closed" viewBox="0 0 184 220.19">
                         <clipPath id="clip-path">
                           <rect class="fill-mask" x="7.5" y="97.69" width="169" height="115" rx="18.5" ry="18.5"/>
                         </clipPath>
@@ -83,9 +79,10 @@
                         <path class="top-part" d="M41.5,93.69V56.93A49.24,49.24,0,0,1,90.73,7.69h2.54A49.24,49.24,0,0,1,142.5,56.93v2.26"/>
                         <rect class="bottom-part" x="7.5" y="97.69" width="169" height="115" rx="18.5" ry="18.5"/>
                     </svg>';
+        echo '</div>';
 
 
-              echo '<script>
+        echo '<script>
               const domLock = document.querySelector(".lock");
               const toggleButton = document.getElementById("toggleButton");
               let closed = true;
@@ -106,11 +103,11 @@
                       setTimeout(() => {
                           domLock.style.animation = anim;
                           if (!closed) {
-                            var url = "https://api.toxy.hu/update.php?id=' . $row["id"] . '&status=on&NeptunCode=' . $row["NeptunCode"] . '&UniPassCode=' . $row["UniPassCode"] . '";
+                            var url = "https://api.toxy.hu/update.php?id=' . $row["id"] . '&status=on&NeptunCode=' . $row["NeptunCode"] . '&UniPassCode=' . $row["UniPassCode"] . '&apikey=' . getApiKey() . '";
                                 $.getJSON(url, function(data) {
                                   console.log(data);
                                 });
-                                document.getElementById("lockerMSG").innerHTML = "A szekrényed nyitva!";  
+                                document.getElementById("lockerMSG").innerHTML = "A szekrényed <b>nyitva!</b>";  
                               setTimeout(() => {
                                 
                                 closed = true;
@@ -120,11 +117,11 @@
                                 
                               }, 3000); // 3 másodperc után visszazárás
                               setTimeout(() => {
-                                var url = "https://api.toxy.hu/update.php?id=' . $row["id"] . '&status=off&NeptunCode=' . $row["NeptunCode"] . '&UniPassCode=' . $row["UniPassCode"] . '";
+                                var url = "https://api.toxy.hu/update.php?id=' . $row["id"] . '&status=off&NeptunCode=' . $row["NeptunCode"] . '&UniPassCode=' . $row["UniPassCode"] . '&apikey=' . getApiKey() . '";
                                 $.getJSON(url, function(data) {
                                   console.log(data);
                                 });  
-                                document.getElementById("lockerMSG").innerHTML = "Ne felejtsd el bezárni!";
+                                document.getElementById("lockerMSG").innerHTML = "Ne felejtsd el <b>bezárni!</b>";
                               }, 3000); // 3 másodperc után visszazárás
                           }
                           else {
@@ -134,40 +131,40 @@
                   }
               });
               </script>';
-            }
-          } else {
-            //  echo  "Nincs foglalt szekrényed" . "<br><br>";
-            echo '<script>
+      }
+    } else {
+      //  echo  "Nincs foglalt szekrényed" . "<br><br>";
+      echo '<script>
             (function(){
               window.location.href = "../index.php";
           })();
           </script>';
-          }
-          ?>
-          
-          <div id="lockerMSG"></div>
-          <form action="" method="POST">
-
-            <button type="submit" name="lead" id="deleteButton">Szekrény leadás</button>
+    }
+    ?>
 
 
-            <br />
-          </form>
-          <?php
+    <form action="" method="POST">
+      <div style="display: flex;justify-content: center;align-items: center;">
+        <div id="lockerMSG" style="margin-top:100px;position:absolute;font-size:1.15rem;"></div>
+      </div>
+      <button type="submit" name="lead" id="deleteButton" class="button" style="margin-top:100px;">Szekrény leadás</button>
+      <br />
+    </form>
+    <?php
 
-          if (isset($_POST['lead'])) {
-            $sql = "SELECT id, NeptunCode FROM led WHERE NeptunCode = '$neptunCode'";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-              // output data of each row
-              while ($row = $result->fetch_assoc()) {
-                // echo "<br> Szekrényed: " . $row["id"] . " - Neptun kód: " . $row["NeptunCode"] . "<br><br>";
-                $json = file_get_contents('http://api.toxy.hu/update.php?id=' . $row["id"] . '&status=off&NeptunCode=' . $empty . '&UniPassCode=' . $empty . '');
-                $obj = json_decode($json);
-                successMsg("Sikeresen leadtad!", "A szekrényed leadása sikeres volt.");
-                //header("Refresh:2;");
+    if (isset($_POST['lead'])) {
+      $sql = "SELECT id, NeptunCode FROM lockers WHERE NeptunCode = '$neptunCode'";
+      $result = $conn->query($sql);
+      if ($result->num_rows > 0) {
+        // output data of each row
+        while ($row = $result->fetch_assoc()) {
+          // echo "<br> Szekrényed: " . $row["id"] . " - Neptun kód: " . $row["NeptunCode"] . "<br><br>";
+          $json = file_get_contents('http://api.toxy.hu/update.php?id=' . $row["id"] . '&status=off&NeptunCode=' . $empty . '&UniPassCode=' . $empty . '&apikey=' . getApiKey() . '');
+          $obj = json_decode($json);
+          successMsg("Sikeresen leadtad!", "A szekrényed leadása sikeres volt.");
+          //header("Refresh:2;");
 
-                echo '<script>
+          echo '<script>
                 window.setTimeout(function(){
                     window.location.href = "../index.php";
                 }, 2000);
@@ -175,23 +172,15 @@
 
 
 
-                exit;
-              }
-            }
-          }
-          ?>
+          exit;
+        }
+      }
+    }
+    ?>
 
-          <br>
-
-        </div>
-      </div>
-
-    </div>
+    <br>
   </div>
 
-<?php
-  } else echo '<button class="button"><a href="../../index.php">Lépj be!</a></button>';
-?>
 </body>
 
 </html>

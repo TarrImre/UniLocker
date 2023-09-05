@@ -7,11 +7,7 @@
     <title>Szekrény beállítások</title>
 
     <?php
-    session_start();
-    if (isset($_SESSION['neptuncode'])) {
-        include('../../connection.php');
-        include('../header.php');
-        
+        include('admin_session_check.php'); // Itt hívjuk meg a session ellenőrzés fájlt
     ?>
         <style>
             .page0 {
@@ -25,7 +21,6 @@
 
 <body>
 
-    <?php include('../nav.php'); ?>
     <div class="middle">
 
         <h1 class="font_bold" style="font-size:1.75rem;margin-top:15px;">Lockers number</h1>
@@ -78,16 +73,16 @@
         {
             global $conn;
             $lockernumber = intval($_POST['howmanylockerNumber']);
-            $sql = "UPDATE lockernumber SET number='$lockernumber' WHERE id='1'";
+            $sql = "UPDATE settings SET value='$lockernumber' WHERE settingsName='NumberOfLockers'";
             $result = $conn->query($sql);
             if ($result) {
-                $sql_delete = "DELETE FROM led";
+                $sql_delete = "DELETE FROM lockers";
                 if ($conn->query($sql_delete) !== TRUE) {
                     echo "Hiba " . $conn->error;
                 }
                 
                 for ($i = 1; $i <= $lockernumber; $i++) {
-                    $sql_insert = "INSERT INTO led (id, status, NeptunCode, UniPassCode) VALUES ('$i', 'off', '', '')";
+                    $sql_insert = "INSERT INTO lockers (id, status, NeptunCode, UniPassCode) VALUES ('$i', 'off', '', '')";
                     if ($conn->query($sql_insert) !== TRUE) {
                         echo "Hiba " . $conn->error;
                         break;
@@ -128,7 +123,7 @@
         {
             global $conn;
             //update every locker status to off with sql query
-            $sql = "UPDATE led SET status='$status'";
+            $sql = "UPDATE lockers SET status='$status'";
             $result = $conn->query($sql);
             if ($result) {
                 //echo "Siker";
@@ -142,7 +137,7 @@
             global $conn;
             $numberSelected = intval($_POST['numberSelected']); // Convert input value to an integer
 
-            $sql = "SELECT * FROM led WHERE id='$numberSelected'";
+            $sql = "SELECT * FROM lockers WHERE id='$numberSelected'";
             $result = $conn->query($sql);
 
             if (empty($numberSelected)) {
@@ -152,7 +147,7 @@
                 errorMsg("Hiba!", "A megadott szekrény nem létezik.");
                 exit;
             } else {
-                $sql = "UPDATE led SET status='on' WHERE id='$numberSelected'";
+                $sql = "UPDATE lockers SET status='on' WHERE id='$numberSelected'";
                 $result = $conn->query($sql);
                 if ($result) {
                     successMsg("Sikeres frissítés!", "Kinyittotad a(z) " . $numberSelected . ". szekrényt.");
@@ -168,7 +163,7 @@
             if (isset($_POST['openSelected'])) {
                 $numberSelected = intval($_POST['numberSelected']); // Convert input value to an integer
                 //update every locker status to on with sql query
-                $sql = "UPDATE led SET status='off' WHERE id='$numberSelected'";
+                $sql = "UPDATE lockers SET status='off' WHERE id='$numberSelected'";
                 if ($conn->query($sql) !== TRUE) {
                     echo "Hiba: " . $conn->error;
                 } else {
@@ -210,11 +205,6 @@
         $conn->close();
         ?>
     </div>
-<?php
-    } else {
-        echo '<button class="button"><a href="../../index.html">Lépj be!</a></button>';
-    }
-?>
 </body>
 
 </html>

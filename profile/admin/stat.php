@@ -7,10 +7,7 @@
   <title>Statisztika</title>
 
   <?php
-  session_start();
-  if (isset($_SESSION['neptuncode'])) {
-    include('../../connection.php');
-    include('../header.php');
+  include('admin_session_check.php'); // Itt hívjuk meg a session ellenőrzés fájlt
 
   ?>
 </head>
@@ -19,7 +16,6 @@
 
   <!--FELHASZNÁLÓK KEZELÉSE-->
   <?php
-    include('../nav.php');
     include('stat_load.php');
   ?>
 
@@ -77,12 +73,6 @@
     RealTimeRefresh('/profile/admin/stat_load.php', 'number-list');
   </script>
 
-<?php
-  } else {
-    echo '<button class="button"><a href="../../index.html">Lépj be!</a></button>';
-    exit;
-  }
-?>
 </body>
 
 </html>

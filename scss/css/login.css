@@ -1,12 +1,14 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
 * {
   font-family: "Poppins", sans-serif;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
   display: flex;
   flex-direction: column;
-  background: #eef1fb;
+  background: #eef3fb;
   overflow: hidden;
   justify-content: center;
   align-items: center;
@@ -184,7 +186,7 @@ button {
   font-size: 17px;
 }
 .topnav a:hover {
-  background-color: #eef1fb;
+  background-color: #eef3fb;
   color: #000;
 }
 .topnav a.active {
@@ -205,4 +207,96 @@ button {
 .blue {
   background-color: rgba(52, 152, 219, 0.3);
   color: #3498db;
+}
+
+.pageDotIcon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #3498db;
+  margin-right: 5px;
+  cursor: pointer;
+  color: #FFF;
+  text-align: center;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.activeDot {
+  background-color: #1dbef9;
+}
+
+.page1 {
+  display: block;
+}
+
+.registerButton,
+.page2,
+.page3,
+.unipassShow,
+.unipassnotAvailable {
+  display: none;
+}
+
+.registerButton {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.circle-container {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  /* Középre igazítás függőlegesen */
+  justify-content: center;
+  /* Középre igazítás vízszintesen */
+  margin-top: 60px;
+  margin-bottom: 70px;
+}
+
+.circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #1dbef9;
+  position: absolute;
+  /* Abszolút pozíció a konténerhez viszonyítva */
+  animation: mymove 6s infinite;
+  animation-delay: calc(var(--delay) * -1s);
+  /* Késleltetés beállítása */
+}
+
+.circle:nth-child(1) {
+  --delay: 0;
+  /* 0 másodperc késleltetés az első körhöz */
+}
+
+.circle:nth-child(2) {
+  --delay: 1;
+  /* 2 másodperc késleltetés a második körhöz */
+}
+
+.circle:nth-child(3) {
+  --delay: 2;
+  /* 4 másodperc késleltetés a harmadik körhöz */
+}
+
+@keyframes mymove {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    width: 250px;
+    height: 250px;
+    opacity: 0;
+  }
+}
+.arrows {
+  cursor: pointer;
 }

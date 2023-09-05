@@ -5,7 +5,7 @@ $row = mysqli_fetch_array($result);
 if (is_array($row)) {
   $vname = $row['VName'];
   $kname = $row['KName'];
-  $rank = $row['Rank'];
+  $_SESSION['Rank'] = $row['Rank'];
 }
 ?>
 <!--=============== HEADER ===============-->
@@ -14,11 +14,10 @@ if (is_array($row)) {
 <header class="header" id="header">
   <nav class="nav container">
     <a href="index.php" class="nav__logo">
-      <?php $welcomeMessage = randomWelcomeMsg();
-      echo $welcomeMessage; ?>
+      <?php echo randomWelcomeMsg();?>
       <!--<img style='position: absolute;margin-left:6px' src='../../icons/wave.png' width='25px' height='25px'>-->
       <br>
-      <?php echo "<p class='font_bold'>$vname $kname</p>" ?><?php /* echo $_SESSION['UniPassCode']; */ ?>
+      <?php echo "<p class='font_bold'>$vname $kname</p>" ?>
     </a>
     <form method="post">
       <div class="nav__menu transparent-background" id="nav-menu">
@@ -31,14 +30,14 @@ if (is_array($row)) {
           </li>
 
           <li class="nav__item">
-            <button name="locker" class="nav__link <?php echo ($rank == "Admin") ? "" : "locker active-link" ?> transparent">
+            <button name="locker" class="nav__link <?php echo ($_SESSION['Rank'] == "Admin") ? "" : "locker active-link" ?> transparent">
               <i class='bx bx-cabinet nav__icon'></i>
               <span class="nav__name"><!--Locker--></span>
             </button>
           </li>
 
           <?php
-          if ($rank == "Admin") {
+          if ($_SESSION['Rank'] == "Admin") {
             echo '<li class="nav__item">
                       <button name="admin" class="nav__link transparent">
                           <i class="bx bx-table nav__icon"></i>

@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <script>window.location.href = "index.php";</script>
-    <!--window.location.replace("index.php");-->
+    <p>Need to login</p>
+    <a href="../index.php">Login</a>
 </body>
 </html>

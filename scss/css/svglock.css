@@ -48,13 +48,34 @@ svg.lock {
   d: path("M41.5,93.69V56.93A49.24,49.24,0,0,1,90.73,7.69h2.54A49.24,49.24,0,0,1,142.5,56.93v33");
 }
 
+.circle {
+  background-color: #FFF;
+  border-radius: 50%;
+  box-shadow: rgba(52, 152, 219, 0.1) 0px 8px 24px;
+  margin: 0 auto;
+  transition: width 0.5s, height 0.5s;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
 @media (max-width: 768px) {
   svg.lock {
+    width: 230px;
+    margin-top: -25px;
+  }
+  .circle {
     width: 300px;
+    height: 300px;
   }
 }
-@media (max-width: 600px) {
+@media (min-width: 769px) {
   svg.lock {
-    width: 75%;
+    width: 250px;
+    margin-top: -25px;
+  }
+  .circle {
+    width: 350px;
+    height: 350px;
   }
 }

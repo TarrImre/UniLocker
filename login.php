@@ -55,7 +55,7 @@ session_start()
 <?php
     if (isset($_POST['submit'])) {
         errorMsg($msg,"Próbáld újra");
-        header("Refresh: 2; url=index.html");
+        header("Refresh: 2; url=index.php");
     }
     ?>   
 </body>

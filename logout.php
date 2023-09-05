@@ -3,5 +3,5 @@
 session_start();
 session_destroy();
 //header("Location: login.php");
-header("Refresh:0; url=index.html");
+header("Refresh:0; url=index.php");
 ?>

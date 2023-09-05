@@ -4,17 +4,17 @@ include('../../connection.php');
 echo '<section class="buttons-wrapper">';
 $lockersNumber = 0;
 //query the lockers number from the database
-$sql = "SELECT number FROM lockernumber WHERE id=1";
+$sql = "SELECT value FROM settings WHERE settingsName='NumberOfLockers'";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
   while ($row = $result->fetch_assoc()) {
 
-    $lockersNumber = $row["number"];
+    $lockersNumber = $row["value"];
   }
 }
 
 for ($i = 1; $i <= $lockersNumber; $i++) {
-  $sql = "SELECT id, NeptunCode FROM led WHERE id = '$i'";
+  $sql = "SELECT id, NeptunCode FROM lockers WHERE id = '$i'";
   $result = $conn->query($sql);
   if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {

@@ -21,7 +21,7 @@ body {
   margin: 3rem 0 0 0;
   font-family: "Poppins", sans-serif;
   font-size: 0.938rem;
-  background-color: #eef1fb;
+  background-color: #eef3fb;
   color: #888888;
 }
 
@@ -93,7 +93,7 @@ img {
 .font_bold {
   color: #333333;
   font-weight: 600;
-  font-size: 1.25rem;
+  font-size: 1.75rem;
 }
 
 .font_medium {
@@ -301,5 +301,20 @@ img {
   padding: 0;
   margin: 0;
   list-style: none;
-  background-color: #eef1fb;
+  background-color: #eef3fb;
+}
+
+.button {
+  padding: 1em;
+  background: #3498db;
+  color: #FFF;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  width: 10em;
+  transition: 0.5s;
+  font-size: 1rem;
+}
+.button:hover {
+  background: #1dbef9;
 }

@@ -7,11 +7,9 @@
   <title>Szekrények</title>
   <script src="../../js/locker.js"></script>
   <?php
-  session_start();
-  if (isset($_SESSION['neptuncode'])) {
+    include('../session_check.php'); // Itt hívjuk meg a session ellenőrzés fájlt
     include('../../connection.php');
     include('../header.php');
-
   ?>
 
 </head>
@@ -48,12 +46,11 @@
         <?php
         $lockersNumber = 0;
         //query the lockers number from the database
-        $sql = "SELECT number FROM lockernumber WHERE id=1";
+        $sql = "SELECT value FROM settings WHERE settingsName='NumberOfLockers'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
           while ($row = $result->fetch_assoc()) {
-
-            $lockersNumber = $row["number"];
+            $lockersNumber = $row["value"];
           }
         }
 
@@ -64,7 +61,21 @@
 
 
           //cant choose the locker if it is already taken
-          $sql = "SELECT id, NeptunCode FROM led WHERE id = '$i'";
+       /*   $sql = "SELECT id, NeptunCode FROM lockers WHERE id = '$i'";
+          $result = $conn->query($sql);
+          if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+              if ($row["NeptunCode"] != "") {
+                $availableLocker = false;
+              } else {
+                $availableLocker = true;
+              }
+            }
+          }*/
+
+
+          //nem engedi h külön gépről és telefonrol tudj foglalni többet
+          $sql = "SELECT id, NeptunCode FROM lockers WHERE NeptunCode = '$neptunCode'";
           $result = $conn->query($sql);
           if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -75,13 +86,11 @@
               }
             }
           }
-
-
-
+       
 
           if (isset($_POST[$i]) && $availableLocker && isset($_POST['kuld'])) {
-
-            $json = file_get_contents('http://api.toxy.hu/update.php?id=' . $_POST[$i] . '&status=off&NeptunCode=' . $neptunCode . '&UniPassCode=' . $UniPassCode . '');
+            include('../apikeyfunction.php');
+            $json = file_get_contents('http://api.toxy.hu/update.php?id=' . $_POST[$i] . '&status=off&NeptunCode=' . $neptunCode . '&UniPassCode=' . $UniPassCode . '&apikey=' . getApiKey() . '');
             $obj = json_decode($json);
             successMsg("Sikeres foglalás!", "A szekrényed elérhető.");
 
@@ -95,7 +104,7 @@
           }
         }
 
-        $available = "SELECT NeptunCode FROM led WHERE NeptunCode='$neptunCode'";
+        $available = "SELECT NeptunCode FROM lockers WHERE NeptunCode='$neptunCode'";
         $availableResult = mysqli_query($conn, $available);
         $available = mysqli_num_rows($availableResult);
         if ($available >= 1) {
@@ -132,9 +141,6 @@
     RealTimeRefreshCheckbox('https://unideb.toxy.hu/profile/locker/lockers.php', 'dynamicDiv');
   </script>
 
-<?php
-  } else echo '<button class="button"><a href="../../index.html">Lépj be!</a></button>';
-?>
 </body>
 
 </html>

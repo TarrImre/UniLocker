@@ -7,6 +7,7 @@ $body-font: 'Poppins', sans-serif;
 
 * {
     font-family: $body-font;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -19,7 +20,8 @@ body {
     margin: 0;
     padding: 0;
 }
-.container{
+
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,7 +46,7 @@ body {
     width: 300px;
     height: auto;
     opacity: 0.95;
-    
+
 
     .email {
         background: colors.$white-color;
@@ -54,7 +56,7 @@ body {
         flex-direction: column;
         gap: 0.5em;
         border-radius: 20px;
-        color: rgba(colors.$darkgrey-color,0.7);
+        color: rgba(colors.$darkgrey-color, 0.7);
         margin-top: -3em;
 
         input {
@@ -78,7 +80,7 @@ body {
         flex-direction: column;
         gap: 0.5em;
         border-radius: 20px;
-        color:  rgba(colors.$darkgrey-color,0.7);
+        color: rgba(colors.$darkgrey-color, 0.7);
 
         input {
             outline: none;
@@ -132,7 +134,7 @@ body {
     .footer {
         display: flex;
         font-size: 0.7em;
-        color: rgba(colors.$darkgrey-color,0.7);
+        color: rgba(colors.$darkgrey-color, 0.7);
         padding-bottom: 10em;
 
         span {
@@ -222,11 +224,108 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-   
+
 }
 
 .blue {
     //background-color: #99c2ff;
     background-color: rgba(colors.$dark-blue-color, 0.3);
     color: colors.$dark-blue-color;
+}
+
+
+
+//register
+.pageDotIcon {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: colors.$dark-blue-color;
+    margin-right: 5px;
+    cursor: pointer;
+    color: colors.$white-color;
+    text-align: center;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.activeDot {
+    background-color: colors.$blue-color;
+}
+
+.page1 {
+    display: block;
+}
+
+.registerButton,
+.page2,
+.page3,
+.unipassShow,
+.unipassnotAvailable {
+    display: none;
+}
+
+.registerButton {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cursor {
+    cursor: pointer;
+}
+
+.circle-container {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    /* Középre igazítás függőlegesen */
+    justify-content: center;
+    /* Középre igazítás vízszintesen */
+    margin-top: 60px;
+    margin-bottom: 70px;
+}
+
+.circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: colors.$blue-color;
+    position: absolute;
+    /* Abszolút pozíció a konténerhez viszonyítva */
+    animation: mymove 6s infinite;
+    animation-delay: calc(var(--delay) * -1s);
+    /* Késleltetés beállítása */
+}
+
+.circle:nth-child(1) {
+    --delay: 0;
+    /* 0 másodperc késleltetés az első körhöz */
+}
+
+.circle:nth-child(2) {
+    --delay: 1;
+    /* 2 másodperc késleltetés a második körhöz */
+}
+
+.circle:nth-child(3) {
+    --delay: 2;
+    /* 4 másodperc késleltetés a harmadik körhöz */
+}
+
+@keyframes mymove {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        width: 250px;
+        height: 250px;
+        opacity: 0;
+    }
+}
+
+.arrows {
+    cursor: pointer;
 }

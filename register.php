@@ -4,19 +4,9 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
-	<!-- PWA related meta tags -->
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<!-- PWA manifest -->
-	<link rel="manifest" href="js/manifest.json">
-	<!-- Add to home screen for Safari on iOS -->
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<meta name="apple-mobile-web-app-title" content="UniPost">
-	<link rel="apple-touch-icon" href="icons/icon-152x152_V2.png">
-	<!-- Windows related -->
-	<meta name="msapplication-TileImage" content="icons/icon-144x144_V2.png">
-	<meta name="msapplication-TileColor" content="#1b6de1">
-	<meta name="theme-color" content="#1b6de1">
+
 
 	<link type="text/css" rel="stylesheet" href="scss/css/login.css" />
 
@@ -24,126 +14,7 @@
 
 	<title>UniLocker | Regisztráció</title>
 
-	<!-- Register service worker -->
-	<!--<script src="js/register-worker.js"></script>-->
-	<!-- Load openui5 libraries -->
-	<!--<script src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js" id="sap-ui-bootstrap" data-sap-ui-libs="sap.m" data-sap-ui-preload="async" data-sap-ui-theme="sap_belize_plus"></script>-->
-	<!-- Load and run the application -->
-	<!--<script src="js/todo-app.js"></script>-->
-	<style>
-		* {
-			-webkit-tap-highlight-color: transparent;
-		}
 
-		.pageDotIcon {
-			width: 20px;
-			height: 20px;
-			border-radius: 50%;
-			background-color: #3498db;
-			margin-right: 5px;
-			cursor: pointer;
-			color: white;
-			text-align: center;
-			padding: 5px;
-			/*centered the content*/
-			display: flex;
-			align-items: center;
-			/* Középre igazítás függőlegesen */
-			justify-content: center;
-			/* Középre igazítás vízszintesen */
-
-
-
-		}
-
-		.activeDot {
-			background-color: #1dbef9;
-		}
-
-		.page1 {
-			display: block;
-		}
-
-		.registerButton,
-		.page2,
-		.page3,
-		.unipassShow,
-		.unipassnotAvailable {
-			display: none;
-		}
-
-		.registerButton {
-			margin-left: auto;
-			margin-right: auto;
-		}
-
-		.cursor {
-			cursor: pointer;
-		}
-	</style>
-	<style>
-		.circle-container {
-			text-align: center;
-			display: flex;
-			align-items: center;
-			/* Középre igazítás függőlegesen */
-			justify-content: center;
-			/* Középre igazítás vízszintesen */
-			margin-top: 60px;
-			margin-bottom: 70px;
-		}
-
-		.circle {
-			width: 10px;
-			height: 10px;
-			border-radius: 50%;
-			background: #1dbef9;
-			position: absolute;
-			/* Abszolút pozíció a konténerhez viszonyítva */
-			animation: mymove 6s infinite;
-			animation-delay: calc(var(--delay) * -1s);
-			/* Késleltetés beállítása */
-		}
-
-		.green-circle {
-			background: #44cc66;
-			width: 200px;
-			height: 200px;
-			border-radius: 50%;
-			opacity: 0.5;
-		}
-
-		.circle:nth-child(1) {
-			--delay: 0;
-			/* 0 másodperc késleltetés az első körhöz */
-		}
-
-		.circle:nth-child(2) {
-			--delay: 1;
-			/* 2 másodperc késleltetés a második körhöz */
-		}
-
-		.circle:nth-child(3) {
-			--delay: 2;
-			/* 4 másodperc késleltetés a harmadik körhöz */
-		}
-
-		@keyframes mymove {
-			0% {
-				opacity: 1;
-			}
-
-			100% {
-				width: 250px;
-				height: 250px;
-				opacity: 0;
-			}
-		}
-
-		.arrows {
-			cursor: pointer;
-		}
-	</style>
 </head>
 
 <body id="body">
@@ -152,6 +23,8 @@
 	include('profile/sweetalert.php');
 	if (isset($_POST['submit'])) {
 
+
+		//mysql_real_escape_string()
 		$VName = mb_convert_case(trim($_POST['VName']), MB_CASE_TITLE, 'UTF-8');
 		$KName = mb_convert_case(trim($_POST['KName']), MB_CASE_TITLE, 'UTF-8');
 		$Email = trim(strtolower($_POST['Email']));
@@ -282,7 +155,7 @@
 				</div>
 				<button class="login registerButton" name="submit" id="registerButton">Regisztráció</button>
 				<div class="footer" style="margin-bottom:0;padding-bottom: 0">
-					<p>Van már felhasználód?<br><a href="index.html" style="color:#212121;"><b>Belépek!</b></a></p>
+					<p>Van már felhasználód?<br><a href="index.php" style="color:#212121;"><b>Belépek!</b></a></p>
 				</div>
 			</form>
 		</div>

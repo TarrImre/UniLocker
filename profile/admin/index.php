@@ -7,16 +7,11 @@
   <title>Admin oldal</title>
 
   <?php
-  session_start();
-  if (isset($_SESSION['neptuncode'])) {
-    include('../../connection.php');
-    include('../header.php');
-
+    include('admin_session_check.php'); // Itt hívjuk meg a session ellenőrzés fájlt
   ?>
 </head>
 
 <body>
-  <?php include('../nav.php'); ?>
   <div class="middle" style="background:transparent;box-shadow:none">
     <h1 class="font_bold" style="font-size:1.75rem;">Admin felület</h1>
     <h2 class="font_medium" style="font-size:0.85rem;color:rgba(0,0,0,0.5);">Itt kezelhetsz bármit.</h2>
@@ -82,12 +77,6 @@
       -->
     </form>
   </div>
-
-<?php
-  } else {
-    echo '<button class="button"><a href="../../index.html">Lépj be!</a></button>';
-  }
-?>
 </body>
 
 </html>

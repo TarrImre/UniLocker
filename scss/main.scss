@@ -107,7 +107,7 @@ img {
 .font_bold {
 	color: colors.$darkgrey-color;
 	font-weight: 600;
-	font-size: 1.25rem;
+	font-size: 1.75rem;
 }
 
 .font_medium {
@@ -334,4 +334,21 @@ img {
 	margin: 0;
 	list-style: none;
 	background-color: colors.$darkwhite-color;
+}
+
+
+.button {
+	padding: 1em;
+	background: colors.$dark-blue-color;
+	color: colors.$white-color;
+	border: none;
+	border-radius: 30px;
+	font-weight: 600;
+	width: 10em;
+	transition: 0.5s;
+	font-size: 1rem;
+
+	&:hover {
+		background: colors.$blue-color;
+	}
 }

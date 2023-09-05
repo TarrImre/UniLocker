@@ -1,6 +1,6 @@
 <?php
 function takenLocker(){
-  sqlQuery("SELECT * FROM led WHERE NeptunCode !=''");
+  sqlQuery("SELECT * FROM lockers WHERE NeptunCode !=''");
 }
 
 function registeredUser(){

@@ -7,11 +7,9 @@
   <title>Profil beállítások</title>
 
   <?php
-  session_start();
-  if (isset($_SESSION['neptuncode'])) {
+    include('../session_check.php'); // Itt hívjuk meg a session ellenőrzés fájlt
     include('../../connection.php');
     include('../header.php');
-
   ?>
 </head>
 
@@ -72,10 +70,6 @@
 
   <script src="../../js/nfc.js"></script>
 
-
-<?php
-  } else echo '<button class="button"><a href="../../index.html">Lépj be!</a></button>';
-?>
 </body>
 
 </html>

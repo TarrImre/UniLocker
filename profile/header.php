@@ -13,13 +13,13 @@
 
 <!--arduino valami-->
 <script type="text/javascript">
-    document.write(
+  /*  document.write(
         [
             "\<script src='",
             "https:" == document.location.protocol ? "https://" : "http://",
             "ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js' type='text/javascript'>\<\/script>",
         ].join("")
-    );
+    );*/
 </script>
 
 <?php

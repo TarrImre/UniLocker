@@ -7,18 +7,12 @@
   <title>Hallgatók</title>
 
   <?php
-  session_start();
-  if (isset($_SESSION['neptuncode'])) {
-    include('../../connection.php');
-    include('../header.php');
-
+  include('admin_session_check.php'); // Itt hívjuk meg a session ellenőrzés fájlt
   ?>
 </head>
 
 <body>
 
-  <!--FELHASZNÁLÓK KEZELÉSE-->
-  <?php include('../nav.php'); ?>
   <div class="middle">
     <h1 class="font_bold" style="font-size:1.75rem;margin-top:15px;">Hallgatók</h1>
     <h2 class="font_medium" style="font-size:0.85rem;color:rgba(0,0,0,0.5);">Itt tudod kezelni a hallgatókat</h2>
@@ -35,12 +29,7 @@
     </script>
 
   </div>
-<?php
-  } else {
-    echo '<button class="button"><a href="../../index.html">Lépj be!</a></button>';
-    exit;
-  }
-?>
+
 </body>
 
 </html>
