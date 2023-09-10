@@ -136,11 +136,15 @@ img {
 		border-radius: 1.25rem 1.25rem 0 0;
 		transition: .4s;
 	}
+
 	.nav__menu.transparent-background {
-		background-color: rgba(colors.$white-color, 0.6); /* Példa: Átlátszó piros hátter */
-		backdrop-filter: blur(10px); /* Példa: 10px homályosítás */
-	  }
-	  .nav__link.locker .nav__name::before {
+		background-color: rgba(colors.$white-color, 0.6);
+		/* Példa: Átlátszó piros hátter */
+		backdrop-filter: blur(10px);
+		/* Példa: 10px homályosítás */
+	}
+
+	.nav__link.locker .nav__name::before {
 		content: "";
 		position: absolute;
 		top: 50%;
@@ -152,12 +156,13 @@ img {
 		box-shadow: 0 -1px 12px colors.$box-shadow-color;
 		border-radius: 50%;
 		z-index: -1;
-	  }
-	
-	  .nav__link.locker .nav__icon{
+	}
+
+	.nav__link.locker .nav__icon {
 		font-size: 2rem;
-		z-index: 2; /* Emeld ki az ikont a háttérből */
-	  }
+		z-index: 2;
+		/* Emeld ki az ikont a háttérből */
+	}
 }
 
 .nav__list,
@@ -352,3 +357,36 @@ img {
 		background: colors.$blue-color;
 	}
 }
+
+
+//settings update page
+.input_style {
+	background: colors.$white-color;
+	box-shadow: 0 0 2em rgba(colors.$box-shadow-color, 0.5);
+	padding: 1em;
+	gap: 0.5em;
+	outline: none;
+	border: none;
+	border-radius: 20px;
+	color: rgba(colors.$darkgrey-color, 0.7);
+	font-size: 1em;
+	width: 100%;
+	&::placeholder {
+		color: rgba(colors.$lightgrey-color, 0.6);
+		font-size: 1em;
+	}
+}
+
+.input_box {
+	width: 300px;
+	margin: 0 auto;
+
+	.box {
+		margin: 10px;
+
+		p {
+			text-align: left;
+		}
+	}
+}
+

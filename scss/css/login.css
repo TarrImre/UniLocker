@@ -41,8 +41,35 @@ body {
   width: 300px;
   height: auto;
   opacity: 0.95;
+  /* .password {
+       background: colors.$white-color;
+       box-shadow: 0 0 2em rgba(colors.$box-shadow-color, 0.5);
+       padding: 1em;
+       display: flex;
+       flex-direction: column;
+       gap: 0.5em;
+       border-radius: 20px;
+       color: rgba(colors.$darkgrey-color, 0.7);
+
+       input {
+           outline: none;
+           border: none;
+           width: 100%;
+           font-size: $inputfontsize;
+
+           &::placeholder {
+               color: rgba(colors.$lightgrey-color, 0.6);
+               font-size: $fontsize;
+           }
+       }
+
+
+       .show-hide {
+           margin-right: -5em;
+       }
+   }*/
 }
-.screen-1 .email {
+.screen-1 .input_style {
   background: #FFF;
   box-shadow: 0 0 2em rgba(193, 207, 212, 0.5);
   padding: 1em;
@@ -53,50 +80,19 @@ body {
   color: rgba(51, 51, 51, 0.7);
   margin-top: -3em;
 }
-.screen-1 .email input {
+.screen-1 .input_style input {
   outline: none;
   border: none;
   width: 100%;
   font-size: 1em;
 }
-.screen-1 .email input::-moz-placeholder {
+.screen-1 .input_style input::-moz-placeholder {
   color: rgba(136, 136, 136, 0.6);
   font-size: 1em;
 }
-.screen-1 .email input::placeholder {
+.screen-1 .input_style input::placeholder {
   color: rgba(136, 136, 136, 0.6);
   font-size: 1em;
-}
-.screen-1 .password {
-  background: #FFF;
-  box-shadow: 0 0 2em rgba(193, 207, 212, 0.5);
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-  border-radius: 20px;
-  color: rgba(51, 51, 51, 0.7);
-  /*ion-icon {
-  	color: #4d4d4d;
-  	margin-bottom: -0.2em;
-  }*/
-}
-.screen-1 .password input {
-  outline: none;
-  border: none;
-  width: 100%;
-  font-size: 1em;
-}
-.screen-1 .password input::-moz-placeholder {
-  color: rgba(136, 136, 136, 0.6);
-  font-size: 1em;
-}
-.screen-1 .password input::placeholder {
-  color: rgba(136, 136, 136, 0.6);
-  font-size: 1em;
-}
-.screen-1 .password .show-hide {
-  margin-right: -5em;
 }
 .screen-1 .login {
   padding: 1em;

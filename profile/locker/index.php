@@ -7,9 +7,10 @@
   <title>Szekrények</title>
   <script src="../../js/locker.js"></script>
   <?php
-    include('../session_check.php'); // Itt hívjuk meg a session ellenőrzés fájlt
-    include('../../connection.php');
-    include('../header.php');
+  include('../session_check.php');
+  include('../../connection.php');
+  include('../header.php');
+  include('../nav.php');
   ?>
 
 </head>
@@ -25,7 +26,6 @@
   </script>
 
 
-  <?php include('../nav.php'); ?>
   <div class="middle">
     <h1 class="font_bold" style="font-size:1.75rem">Available lockers</h1>
     <h2 class="font_medium" style="font-size:0.85rem;color:rgba(0,0,0,0.5);">Select one and press the tick</h2>
@@ -41,7 +41,7 @@
       $availableLocker = true;
       ?>
 
-      
+
       <form action="" method="POST" name="main">
         <?php
         $lockersNumber = 0;
@@ -61,7 +61,7 @@
 
 
           //cant choose the locker if it is already taken
-       /*   $sql = "SELECT id, NeptunCode FROM lockers WHERE id = '$i'";
+          /*   $sql = "SELECT id, NeptunCode FROM lockers WHERE id = '$i'";
           $result = $conn->query($sql);
           if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -86,7 +86,7 @@
               }
             }
           }
-       
+
 
           if (isset($_POST[$i]) && $availableLocker && isset($_POST['kuld'])) {
             include('../apikeyfunction.php');

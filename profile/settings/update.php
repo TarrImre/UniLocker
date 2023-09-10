@@ -1,8 +1,11 @@
 <?php
-session_start();
+
+include('../session_check.php');
+include('../apikeyfunction.php');
 include('../../connection.php');
 include('../header.php');
-include('../apikeyfunction.php');
+
+//ADATOK MEGTISZTITASA ELLENORZESE
 
 if (isset($_POST['update'])) {
     $id = $_SESSION['id'];
@@ -10,25 +13,42 @@ if (isset($_POST['update'])) {
     $kname = mysqli_real_escape_string($conn, trim($_POST['KName']));
     $email = mysqli_real_escape_string($conn, trim($_POST['Email']));
     $password = mysqli_real_escape_string($conn, trim($_POST['Password']));
-    $neptuncode = mysqli_real_escape_string($conn, trim($_POST['NeptunCode']));
+    $passwordAgain = mysqli_real_escape_string($conn, trim($_POST['PasswordAgain']));
+    $neptuncode = $_SESSION['neptuncode'];
     $unipasscode = mysqli_real_escape_string($conn, trim($_POST['UniPassCode']));
 
     
-    
-    $sql = "SELECT id FROM users WHERE NeptunCode = '$neptuncode' AND id != '$id'";
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-        errorMsg("Sikertelen frissítés!", "Ez a Neptun kód már foglalt!");
-        header("Refresh: 2; url=index.php");
+    if (empty($vname) || empty($kname) || empty($email) || empty($password) || empty($unipasscode)) {
+        errorMsg("Hiba!", "Nem lehet üres mező!");
+        header("Refresh: 2; url=../../index.php");
         exit;
     }
-    
+
+
+    if ($unipasscode == "ERROR") {
+        errorMsg("Sikertelen frissítés!", "Hibás UniPass!");
+        header("Refresh: 2; url=../../index.php");
+        exit;
+    }
+
+    //check the unipass code already exist
+    $sql = "SELECT * FROM users WHERE UniPassCode='$unipasscode' AND UniPassCode != '' AND id != '$id'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result);
+    if (is_array($row)) {
+        errorMsg("Sikertelen frissítés!", "Ez az UniPass kód már foglalt!");
+        header("Refresh: 2; url=../../index.php");
+        exit;
+    }
+
+
+
     $sql = "UPDATE users SET VName='$vname', KName='$kname', Email='$email', Password='$password', NeptunCode='$neptuncode', UniPassCode='$unipasscode' WHERE id='$id'";
     $result = mysqli_query($conn, $sql);
 
-  
+
     // Check if any field is updated, and if the NeptunCode exists in the "led" table
-    if ($result && (!empty($vname) || !empty($kname) || !empty($email) || !empty($password) || !empty($neptuncode) || !empty($unipasscode))) {
+    /* if ($result && (!empty($vname) || !empty($kname) || !empty($email) || !empty($password) || !empty($neptuncode) || !empty($unipasscode))) {
         $sql = "SELECT id, status FROM lockers WHERE NeptunCode = '$neptuncode'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
@@ -39,12 +59,41 @@ if (isset($_POST['update'])) {
             }
         }
         successMsg("Sikeres frissítés!", "Jelentkezz be újra!");
-        header("Refresh: 2; url=../../index.html");
+        header("Refresh: 2; url=../../index.php");
         exit;
     } else if (empty($vname) || empty($kname) || empty($email) || empty($password) || empty($neptuncode) || empty($unipasscode)) {
         successMsg("Nem történt módosítás!", "Az adataid nem változtak.");
+        header("Refresh: 2; url=../../index.php");
+        exit;
     } else {
         errorMsg("Sikertelen frissítés!", "Nem sikerült frissíteni az adataidat.");
+        header("Refresh: 2; url=../../index.php");
+        exit;
+    }*/
+
+    //check if any field is updated
+
+    if ($result && (!empty($vname) || !empty($kname) || !empty($email) || !empty($password) || !empty($neptuncode) || !empty($unipasscode))) {
+        $sql = "SELECT id, status FROM lockers WHERE NeptunCode = '$neptuncode'";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                // Update the API with UniPassCode only
+                $json = file_get_contents('http://api.toxy.hu/update.php?id=' . $row["id"] . '&status=off&NeptunCode=' . $neptuncode . '&UniPassCode=' . $unipasscode . '&apikey=' . getApiKey() . '');
+                $obj = json_decode($json);
+            }
+        }
+        successMsg("Sikeres frissítés!", "Jelentkezz be újra!");
+        header("Refresh: 2; url=../../index.php");
+        exit;
+    } else if (empty($vname) || empty($kname) || empty($email) || empty($password) || empty($neptuncode) || empty($unipasscode)) {
+        successMsg("Nem történt módosítás!", "Az adataid nem változtak.");
+        header("Refresh: 2; url=../../index.php");
+        exit;
+    } else {
+        errorMsg("Sikertelen frissítés!", "Nem sikerült frissíteni az adataidat.");
+        header("Refresh: 2; url=../../index.php");
+        exit;
     }
 }
 
@@ -67,7 +116,7 @@ if (isset($_POST['delete'])) {
     $result = mysqli_query($conn, $sql);
     if ($result) {
         successMsg("Sikeres törlés!", "Sikeresen törölted a fiókodat!");
-        header("Refresh: 2; url=../../index.html");
+        header("Refresh: 2; url=../../index.php");
         exit;
     } else {
         errorMsg("Sikertelen törlés!", "Nem sikerült törölni a fiókodat.");
@@ -75,4 +124,3 @@ if (isset($_POST['delete'])) {
 }
 $conn->close();
 exit();
-?>

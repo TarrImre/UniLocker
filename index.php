@@ -1,5 +1,7 @@
 <?php
 // (C) SET LANGUAGE INTO SESSION
+/*$time = 2 * 60 * 60;
+session_set_cookie_params($time);*/
 session_start();
 if (!isset($_SESSION["lang"])) {
     $_SESSION["lang"] = "hu";
@@ -34,42 +36,80 @@ require "lang/lang-" . $_SESSION["lang"] . ".php"; ?>
 </head>
 
 <body>
-<div class="container">
-    <div class="screen-1">
-        <div class="middle">
-            <h1><?= $_TXT[1] ?></h1>
-        </div>
-        <form action="login.php" method="POST">
-            <div class="email" style="margin-bottom:15px;">
-                <input type="text" name="NeptunCode" placeholder="<?= $_TXT[2] ?>" autocomplete="off">
-            </div>
-            <div class="password" style="margin-bottom:15px;margin-top:15px;">
-                <input type="password" name="Password" placeholder="<?= $_TXT[3] ?>" autocomplete="off">
-            </div>
+    <?php
+    include('connection.php');
+    include('profile/sweetalert.php');
+    if (isset($_POST['submit'])) {
+        $NeptunCode = strtoupper(str_replace(' ', '', $_POST['NeptunCode']));
+        $Password = $_POST['Password'];
 
-            <button class="login" name="submit" style="width:100%;"><?= $_TXT[4] ?></button>
-        </form>
-        <div class="footer">
-            <a class="register a_style" style="margin:5px;" href="register.php"><?= $_TXT[5] ?></a>
-            <a class="register a_style" style="margin:5px;" href="pwa/" class="pwa"><?= $_TXT[6] ?></a>
-        </div>
-        <div class="middle">
-            <form method="post">
-                <button class="languageButton" type="submit" name="lang" value="hu"><img src="icons/flags/hungary.jpg" alt="Hungarian" title="Hungarian"></button>
-                <button class="languageButton" type="submit" name="lang" value="en"><img src="icons/flags/english.jpg" alt="English" title="English"></button>
-                <button class="languageButton" type="submit" name="lang" value="de"><img src="icons/flags/germany.jpg" alt="Germany" title="Germany"></button>
-                <button class="languageButton" type="submit" name="lang" value="zh"><img src="icons/flags/china.jpg" alt="Chinese" title="Chinese"></button>
-                <button class="languageButton" type="submit" name="lang" value="ja"><img src="icons/flags/japan.jpg" alt="Japanese" title="Japanese"></button>
-                <button class="languageButton" type="submit" name="lang" value="ar"><img src="icons/flags/arab.jpg" alt="Arabic" title="Arabic"></button>
+
+        if (empty($NeptunCode) || empty($Password)) {
+            errorMsg("Minden mező kötelező!", "Próbáld újra!");
+        } else if (strlen($NeptunCode) != 6) {
+            errorMsg("Hibás Neptun kód!", "Próbáld újra!");
+        } else {
+            $sql = "SELECT * FROM users WHERE NeptunCode='$NeptunCode'";
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_array($result);
+            if (is_array($row)) {
+                if (password_verify($Password, $row['Password'])) {
+                    $_SESSION['id'] = $row['id'];
+                    $_SESSION['vname'] = $row['VName'];
+                    $_SESSION['kname'] = $row['KName'];
+                    $_SESSION['email'] = $row['Email'];
+                    $_SESSION['neptuncode'] = $row['NeptunCode'];
+                    $_SESSION['UniPassCode'] = $row['UniPassCode'];
+                    $_SESSION['Rank'] = $row['Rank'];
+
+                    //echo "sikeres!";
+                    header("Location: profile/");
+                    exit;
+                } else {
+                    errorMsg("Hibás Kód vagy jelszó!", "Próbáld újra!");
+                }
+            } else {
+                errorMsg("Hibás Kód vagy jelszó!", "Próbáld újra!");
+            }
+        }
+    }
+    ?>
+    <div class="container">
+        <div class="screen-1">
+            <div class="middle">
+                <h1><?= $_TXT[1] ?></h1>
+            </div>
+            <form method="POST">
+                <div class="input_style" style="margin-bottom:15px;">
+                    <input type="text" name="NeptunCode" placeholder="<?= $_TXT[2] ?>" autocomplete="off">
+                </div>
+                <div class="input_style" style="margin-bottom:15px;margin-top:15px;">
+                    <input type="password" name="Password" placeholder="<?= $_TXT[3] ?>" autocomplete="off">
+                </div>
+
+                <button class="login" name="submit" style="width:100%;"><?= $_TXT[4] ?></button>
             </form>
-            <!--<button class="languageButton"><img src="icons/flags/hungary.jpg" alt="Hungarian" title="Hungarian"></button>
+            <div class="footer">
+                <a class="register a_style" style="margin:5px;" href="register.php"><?= $_TXT[5] ?></a>
+                <a class="register a_style" style="margin:5px;" href="pwa/" class="pwa"><?= $_TXT[6] ?></a>
+            </div>
+            <div class="middle">
+                <form method="post">
+                    <button class="languageButton" type="submit" name="lang" value="hu"><img src="icons/flags/hungary.jpg" alt="Hungarian" title="Hungarian"></button>
+                    <button class="languageButton" type="submit" name="lang" value="en"><img src="icons/flags/english.jpg" alt="English" title="English"></button>
+                    <button class="languageButton" type="submit" name="lang" value="de"><img src="icons/flags/germany.jpg" alt="Germany" title="Germany"></button>
+                    <button class="languageButton" type="submit" name="lang" value="zh"><img src="icons/flags/china.jpg" alt="Chinese" title="Chinese"></button>
+                    <button class="languageButton" type="submit" name="lang" value="ja"><img src="icons/flags/japan.jpg" alt="Japanese" title="Japanese"></button>
+                    <button class="languageButton" type="submit" name="lang" value="ar"><img src="icons/flags/arab.jpg" alt="Arabic" title="Arabic"></button>
+                </form>
+                <!--<button class="languageButton"><img src="icons/flags/hungary.jpg" alt="Hungarian" title="Hungarian"></button>
                 <button class="languageButton"><img src="icons/flags/english.jpg" alt="English" title="English"></button>
                 <button class="languageButton"><img src="icons/flags/germany.jpg" alt="Germany" title="Germany"></button>
                 <button class="languageButton"><img src="icons/flags/china.jpg" alt="Chinese" title="Chinese"></button>
                 <button class="languageButton"><img src="icons/flags/japan.jpg" alt="Japanese" title="Japanese"></button>
                 <button class="languageButton"><img src="icons/flags/arab.jpg" alt="Arabic" title="Arabic"></button>-->
+            </div>
         </div>
-    </div>
     </div>
     <div class="left-circle"></div>
     <!--<div class="right-circle"></div>-->

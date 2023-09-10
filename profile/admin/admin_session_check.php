@@ -14,7 +14,15 @@ if (isset($_SESSION['Rank']) && $_SESSION['Rank'] !== "Admin") {
   exit;
 }
 
-include('../../connection.php');
-include('../header.php');
-include('../nav.php');
+
+$rootPath = $_SERVER['DOCUMENT_ROOT'];
+
+$connectionPath = $rootPath . '/connection.php';
+$headerPath = $rootPath . '/profile/header.php';
+$navPath = $rootPath . '/profile/nav.php';
+
+include($connectionPath);
+include($headerPath);
+include($navPath);
+
 ?>
