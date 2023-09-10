@@ -4,92 +4,89 @@
 <head>
 	<meta charset="UTF-8">
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
-
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
 	<link type="text/css" rel="stylesheet" href="scss/css/login.css" />
-
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-
 	<title>UniLocker | Regisztráció</title>
-
-
 </head>
 
-<body id="body">
+<body>
 	<?php
 	include('connection.php');
 	include('profile/sweetalert.php');
+	include('input_validation.php');
+
 	if (isset($_POST['submit'])) {
-
-
 		//mysql_real_escape_string()
-		$VName = mb_convert_case(trim($_POST['VName']), MB_CASE_TITLE, 'UTF-8');
-		$KName = mb_convert_case(trim($_POST['KName']), MB_CASE_TITLE, 'UTF-8');
-		$Email = trim(strtolower($_POST['Email']));
+		$VName = htmlspecialchars(mb_convert_case(trim($_POST['VName']), MB_CASE_TITLE, 'UTF-8'));
+		$KName = htmlspecialchars(mb_convert_case(trim($_POST['KName']), MB_CASE_TITLE, 'UTF-8'));
+		$Email = htmlspecialchars(trim(strtolower($_POST['Email'])));
 		$Password = trim($_POST['Password']);
 		$PasswordAgain = trim($_POST['PasswordAgain']);
-		$NeptunCode = trim(strtoupper($_POST['NeptunCode']));
-		$UniPassCode = trim($_POST['UniPassCode']);
-		date_default_timezone_set('Europe/Budapest');
-		$CreatedAT = date("Y-m-d h:i:sa");
+		$NeptunCode = htmlspecialchars(trim(strtoupper($_POST['NeptunCode'])));
+		$UniPassCode = htmlspecialchars(trim($_POST['UniPassCode']));
+		date_default_timezone_set('Europe/Budapest');		
+		$CreatedAT = date("Y-m-d H:i:s");
+		
 		$rank = "Student";
 		$msg = "";
 
-		//check the neptuncode and the email and the unipass code already exist, if the unipass code is EMPTY dont count it
-
-		$check = "SELECT * FROM users WHERE NeptunCode = '$NeptunCode'";
-		$check2 = "SELECT * FROM users WHERE Email = '$Email'";
-		$check3 = "SELECT * FROM users WHERE UniPassCode = '$UniPassCode'";
 
 
-		$result = mysqli_query($conn, $check);
-		$result2 = mysqli_query($conn, $check2);
-		$result3 = mysqli_query($conn, $check3);
-		$count = mysqli_num_rows($result);
-		$count2 = mysqli_num_rows($result2);
+		$VName = mysqli_real_escape_string($conn, $VName);
+		$KName = mysqli_real_escape_string($conn, $KName);
+		$Email = mysqli_real_escape_string($conn, $Email);
+		$Password = mysqli_real_escape_string($conn, $Password);
+		$PasswordAgain = mysqli_real_escape_string($conn, $PasswordAgain);
+		$NeptunCode = mysqli_real_escape_string($conn, $NeptunCode);
+		$UniPassCode = mysqli_real_escape_string($conn, $UniPassCode);
 
-		if ($UniPassCode == "EMPTY") {
-			$count3 = 0;
-		} else {
-			$count3 = mysqli_num_rows($result3);
-		}
+		$vNameError = validateVName($VName);
+		$kNameError = validateKName($KName);
+		$emailError = validateEmail($Email);
+		$passwordError = validatePassword($Password);
+		$passwordAgainError = validatePasswordAgain($Password, $PasswordAgain);
+		$neptunCodeError = validateNeptunCode($NeptunCode);
+		$uniPassCodeError = validateUniPassCode($UniPassCode);
 
-		if (empty($VName) || empty($KName) || empty($Email) || empty($Password) || empty($PasswordAgain) || empty($NeptunCode)) {
-			errorMsg("Minden mező kötelező!", "");
-		} else if ($Password != $PasswordAgain) {
-			errorMsg("Hibás jelszó!", "A két jelszó nem egyezik meg!");
-		} else if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) {
-			errorMsg("Hibás Email!", "Rossz email formátum!");
-		} else if (strlen($Password) < 8) {
-			errorMsg("Hibás jelszó!", "A jelszónak legalább 8 karakter hosszúnak kell lennie!");
-		} else if (strlen($NeptunCode) != 6) {
-			errorMsg("Hibás Neptun kód!", "A Neptun kód 6 karakter hosszú!");
-		}
-		//make a pregmatch to the kname and vname, and control the hungarian characters and let the space
-		else if (!preg_match("/^[a-zA-ZáéíóöőúüűÁÉÍÓÖŐÚÜŰ ]*$/", $VName)) {
-			errorMsg("Hibás Vezetéknév!", "A vezetéknév csak betűket tartalmazhat!");
-		} else if (!preg_match("/^[a-zA-ZáéíóöőúüűÁÉÍÓÖŐÚÜŰ ]*$/", $KName)) {
-			errorMsg("Hibás Keresztnév!", "A keresztnév csak betűket tartalmazhat!");
-		} else if (!preg_match("/^[a-zA-Z0-9]*$/", $NeptunCode)) {
-			errorMsg("Hibás Neptun kód!", "A Neptun kód csak betűket és számokat tartalmazhat!");
-		} else if ($count > 0) {
-			errorMsg("Hibás Neptun kód!", "A Neptun kód már létezik!");
-		} else if ($count2 > 0) {
-			errorMsg("Hibás Email!", "Az email cím már létezik!");
-		} else if ($count3 > 0) {
-			errorMsg("Hibás Unipass kártya!", "Az Unipass kártyát már regisztrálták!");
-		} else {
-			$password_md5 = $Password;
+		$emailExistError = validateEmailExist($conn, $Email);
+		$neptunCodeExistError = validateNeptunCodeExist($conn, $NeptunCode);
+		$unipasscodeExistError = validateUniPassCodeExist($conn, $UniPassCode);
 
-			$push = "INSERT INTO users (VName, KName, Email, Password, NeptunCode, UniPassCode, CreatedAT, Rank) VALUES ('$VName', '$KName', '$Email', '$password_md5', '$NeptunCode', '$UniPassCode','$CreatedAT', '$rank')";
+		$filleveryfield = filleveryfield($VName, $KName, $Email, $Password, $PasswordAgain, $NeptunCode, $UniPassCode);
+
+		if($filleveryfield){
+			errorMsg("Üres mező!", $filleveryfield);
+		} else if ($vNameError) {
+			errorMsg("Hibás Vezetéknév!", $vNameError);
+		} else if ($kNameError) {
+			errorMsg("Hibás Keresztnév!", $kNameError);
+		} else if ($emailError) {
+			errorMsg("Hibás Email!", $emailError);
+		} else if ($passwordError) {
+			errorMsg("Hibás Jelszó!", $passwordError);
+		} else if ($passwordAgainError) {
+			errorMsg("Hibás Jelszó!", $passwordAgainError);
+		} else if ($neptunCodeError) {
+			errorMsg("Hibás Neptun kód!", $neptunCodeError);
+		} else if ($uniPassCodeError) {
+			errorMsg("Hibás Unipass kártya!", $uniPassCodeError);
+		} else if ($emailExistError) {
+			errorMsg("Hibás Email!", $emailExistError);
+		} else if ($neptunCodeExistError) {
+			errorMsg("Hibás Neptun kód!", $neptunCodeExistError);
+		} else if ($unipasscodeExistError) {
+			errorMsg("Hibás Unipass kártya!", $unipasscodeExistError);
+		} else{
+			$passwordencrypt = password_hash($Password, PASSWORD_DEFAULT);
+			$push = "INSERT INTO users (VName, KName, Email, Password, NeptunCode, UniPassCode, CreatedAT, Rank) VALUES ('$VName', '$KName', '$Email', '$passwordencrypt', '$NeptunCode', '$UniPassCode','$CreatedAT', '$rank')";
 			if (mysqli_query($conn, $push)) {
 				successMsg("Sikeres regisztráció!", "Mostmár beléphetsz!");
 				header("Refresh: 2; url=index.php");
 				exit;
 			}
 		}
+	
 	}
 	$conn->close();
 	?>
@@ -100,38 +97,38 @@
 			</div>
 			<form method="POST">
 				<div class="page1">
-					<div class="email" style="margin-bottom:15px;">
-						<input type="text" name="VName" autocomplete="off" placeholder="Vezetéknév" autocomplete="off">
+					<div class="input_style" style="margin-bottom:15px;">
+						<input type="text" name="VName" placeholder="Vezetéknév" autocomplete="off" value="<?php echo isset($_POST['VName']) ? $_POST['VName'] : "";  ?>">
 					</div>
-					<div class="email" style="margin-bottom:15px;margin-top:15px;">
-						<input type="text" name="KName" autocomplete="off" placeholder="Keresztnév" autocomplete="off">
+					<div class="input_style" style="margin-bottom:15px;margin-top:15px;">
+						<input type="text" name="KName" placeholder="Keresztnév" autocomplete="off" value="<?php echo isset($_POST['KName']) ? $_POST['KName'] : ""; ?>">
 					</div>
-					<div class="email" style="margin-bottom:15px;margin-top:15px;">
-						<input type="text" name="Email" autocomplete="off" placeholder="Email" autocomplete="off">
+					<div class="input_style" style="margin-bottom:15px;margin-top:15px;">
+						<input type="text" name="Email" placeholder="Email" autocomplete="off" value="<?php echo isset($_POST['Email']) ? $_POST['Email'] : ""; ?>">
 					</div>
 				</div>
 
 				<div class="page2">
-					<div class="email" style="margin-bottom:15px;">
-						<input type="password" name="Password" autocomplete="off" placeholder="Jelszó" autocomplete="off">
+					<div class="input_style" style="margin-bottom:15px;">
+						<input type="password" name="Password" placeholder="Jelszó" autocomplete="off">
 					</div>
-					<div class="email" style="margin-bottom:15px;margin-top:15px;">
-						<input type="password" name="PasswordAgain" autocomplete="off" placeholder="Jelszó ismét" autocomplete="off">
+					<div class="input_style" style="margin-bottom:15px;margin-top:15px;">
+						<input type="password" name="PasswordAgain" placeholder="Jelszó ismét" autocomplete="off">
 					</div>
-					<div class="email" style="margin-bottom:15px;margin-top:15px;">
-						<input type="text" name="NeptunCode" autocomplete="off" placeholder="Neptun kód" autocomplete="off">
+					<div class="input_style" style="margin-bottom:15px;margin-top:15px;">
+						<input type="text" name="NeptunCode" placeholder="Neptun kód" autocomplete="off" value="<?php echo isset($_POST['NeptunCode']) ? $_POST['NeptunCode'] : ""; ?>">
 					</div>
 				</div>
 
 				<div class="page3">
 					<div class="unipassHide">
-						<div class="email" style="background-color: #99c2ff;color: #0056b3; padding-top:0px">
+						<div class="input_style" style="background-color: #99c2ff;color: #0056b3; padding-top:0px">
 							<p>Lehetőség van regisztrálni az UniPass kártyádat, így a kártyával is kutdod nyitni a szekrényed.<br>Szeretnéd?</p>
 							<p id="unipassConfirm" class="cursor" style="margin:0px"><b>Igen >></b></p>
 						</div>
 					</div>
 					<div class="unipassnotAvailable">
-						<div class="email" style="background-color: #ff9999;color: #8f0000; padding-top:0px">
+						<div class="input_style" style="background-color: #ff9999;color: #8f0000; padding-top:0px">
 							<p>Sajnáljuk, az UniPass regisztráció nem elérhető!</p>
 						</div>
 					</div>
@@ -145,7 +142,7 @@
 							<p id="scanButton" style="text-align:center;padding:5px;font-size:25px;margin-top:45px;color:white;background-color:#1dbef9;width:35px;height:35px;border-radius:50%;"><i class='bx bxs-hand-up'></i></p>
 						</div>
 						<p id="randomtext" style="text-align:center;color:#888888;margin-top:0px;padding-top:0px;">Tartsd a kártyát a telefon hátuljához.</p>
-						<input type="text" id="Unipass" name="UniPassCode" autocomplete="off" placeholder="Unipass kártya" style="display: none;" value="EMPTY" readonly>
+						<input type="text" id="Unipass" name="UniPassCode" autocomplete="off" placeholder="Unipass kártya" style="display: none;" value="ERROR" readonly>
 					</div>
 				</div>
 				<div class="middle">

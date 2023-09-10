@@ -7,16 +7,16 @@
   <title>Szekrényem</title>
 
   <?php
-    include('../session_check.php'); // Itt hívjuk meg a session ellenőrzés fájlt
-    include('../../connection.php');
-    include('../header.php');
-
+  include('../session_check.php');
+  include('../../connection.php');
+  include('../header.php');
+  include('../nav.php');
   ?>
-    <link rel="stylesheet" href="../../scss/css/svglock.css">
+  <link rel="stylesheet" href="../../scss/css/svglock.css">
 </head>
 
 <body>
-  <?php include('../nav.php'); ?>
+
   <div class="middle" style="background-color:transparent;box-shadow:none;">
     <!--h1>A szekrényed</h1-->
     <?php

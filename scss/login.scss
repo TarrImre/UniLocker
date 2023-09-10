@@ -48,7 +48,7 @@ body {
     opacity: 0.95;
 
 
-    .email {
+    .input_style {
         background: colors.$white-color;
         box-shadow: 0 0 2em rgba(colors.$box-shadow-color, 0.5);
         padding: 1em;
@@ -72,7 +72,7 @@ body {
         }
     }
 
-    .password {
+   /* .password {
         background: colors.$white-color;
         box-shadow: 0 0 2em rgba(colors.$box-shadow-color, 0.5);
         padding: 1em;
@@ -94,15 +94,11 @@ body {
             }
         }
 
-        /*ion-icon {
-			color: #4d4d4d;
-			margin-bottom: -0.2em;
-		}*/
 
         .show-hide {
             margin-right: -5em;
         }
-    }
+    }*/
 
     .login {
         padding: 1em;

@@ -1,6 +1,6 @@
 <?php
- include('admin_session_check.php'); // Itt hívjuk meg a session ellenőrzés fájlt
- 
+
+include('../../connection.php');
 $sql = "SELECT * FROM users";
 $result = $conn->query($sql);
 ?>

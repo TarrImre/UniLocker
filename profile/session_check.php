@@ -1,7 +1,13 @@
 <?php
 session_start();
+
 if (!isset($_SESSION['neptuncode'])) {
-    header("Location: needtologin.php");
+    //dinamikus útvonal
+    //a többi include is kell 
+    header("Location: https://unideb.toxy.hu/profile/needtologin.php");
     exit;
 }
+
+
 ?>
+
