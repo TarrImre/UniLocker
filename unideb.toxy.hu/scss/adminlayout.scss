@@ -1,0 +1,93 @@
+@use 'colors';
+
+.bg {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 10px;
+}
+
+.stat-box {
+    background-color: colors.$white-color;
+    box-shadow: 0px 2px 10px colors.$box-shadow-color;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px auto;
+    width: 100%;
+    max-width: 350px;
+}
+
+.stat-content {
+    text-align: left;
+    margin-right: 30px;
+}
+
+.stat-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.stat-value {
+    font-size: 26px;
+    font-weight: bold;
+    color: colors.$dark-blue-color;
+}
+
+.stat-label {
+    font-size: 14px;
+    color: colors.$lightgrey-color;
+}
+
+.stat-icon {
+    width: 70px;
+    height: 70px;
+    background-color: colors.$dark-blue-color;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: width 0.5s, height 0.5s;
+    i {
+        font-size: 36px;
+        color: colors.$white-color;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        i{
+            font-size: 28px;
+        }
+    }
+    .stat-value{
+        font-size: 20px;
+    }
+}
+
+
+
+.stat-button {
+    font-family: 'Poppins', sans-serif;
+    margin-top: 10px;
+    padding: 5px 15px;
+    background-color: transparent;
+    border: 2px solid colors.$dark-blue-color;
+    border-radius: 30px;
+    font-size: 15px;
+    color: colors.$dark-blue-color;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        background-color: colors.$dark-blue-color;
+        color: colors.$white-color;
+    }
+}
+
