@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#FBFCFE">
+    <meta name="msapplication-TileColor" content="#FBFCFE">
+    <meta name="theme-color" content="#FBFCFE">
+
+    <link rel="stylesheet" href="../scss/css/login.css">
+    <link rel="manifest" href="manifest.json">
+    <title>PWA install</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="screen-1">
+            <div class="middle">
+                <h1 style="margin-top: 20px;margin-bottom: -20px;">Hogyan kell telepíteni?</h1>
+            </div>
+            <div style="margin: 0;">
+            <h2>Chrome:</h2>
+            <p>Jobb felső sarokban <img src="../icons/kebab.png" style="width: 16px;height: 16px;">, majd válaszd az "Alkalmazás telepítése" opciót.</p>
+            <h2>Safari:</h2>
+            <p>Lent a navigációs sávon a középső ikon <img src="../icons/ios-share.png" style="width: 15px;height: 19px;margin:3px">, majd válaszd a "Főképernyőhöz adás" opciót.</p>
+            <a href="../"><button class="login" name="submit" style="width:100%;margin-top: 20px;">Kezdőlap</button></a>
+        </div>
+        </div>
+    </div>
+    <div class="left-circle"></div>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(function (registration) {
+                    console.log('A Service Worker regisztrációja sikeres:', registration);
+                })
+                .catch(function (error) {
+                    console.log('A Service Worker regisztrációja sikertelen:', error);
+                });
+        }
+    </script>
+</body>
+
+</html>
