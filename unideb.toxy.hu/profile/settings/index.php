@@ -302,11 +302,11 @@
           </div>
           <div class="box">
             <p>Régi jelszó</p>
-            <input class="input_style" type="text" name="OldPassword" value="">
+            <input class="input_style" type="password" name="OldPassword" value="">
           </div>
           <div class="box">
             <p>Új jelszó</p>
-            <input class="input_style" type="text" name="NewPassword" value="">
+            <input class="input_style" type="password" name="NewPassword" value="">
           </div>
         </div>
 
