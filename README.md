@@ -1,4 +1,4 @@
-![logo](https://unideb.toxy.hu/icons/logo.png)
+![Mockup](https://unideb.toxy.hu/icons/logo2.png)
 
 # UniLocker
 Célkitűzésem volt, hogy egy olyan platformot hozzak létre, amely lehetővé teszi a hallgatók számára, hogy könnyedén és biztonságosan használják az egyetemi szekrényeket. Az alkalmazás lehetővé teszi a felhasználók számára a regisztrációt és az azonosítást, ideértve az UniPass kártyák használatát is, amelyek segítségével egy egyszerű érintéssel nyithatják ki a szekrényeiket. 
