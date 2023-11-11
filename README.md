@@ -1,6 +1,8 @@
+<p align="center">
+  <img width="460" height="300" src="https://unideb.toxy.hu/icons/logo.png">
+</p>
 
 # UniLocker
-
 Célkitűzésem volt, hogy egy olyan platformot hozzak létre, amely lehetővé teszi a hallgatók számára, hogy könnyedén és biztonságosan használják az egyetemi szekrényeket. Az alkalmazás lehetővé teszi a felhasználók számára a regisztrációt és az azonosítást, ideértve az UniPass kártyák használatát is, amelyek segítségével egy egyszerű érintéssel nyithatják ki a szekrényeiket. 
 
 ![Mockup](https://unideb.toxy.hu/icons/mockup.png)
@@ -16,6 +18,10 @@ Az UniLocker projekt egy olyan progresszív webalkalmazás, amelynek célja, hog
 
 ![Connection](https://unideb.toxy.hu/icons/connection.png)
 
+# Szoftver
+
+![Screenshots](https://unideb.toxy.hu/icons/pwamerged.png)
+
 ## Admin felület
 
 Az Adminisztrátor rang azt jelzi, hogy az adott felhasználó az oldal egyik legmagasabb szintű jogosultságával rendelkezik, és így teljeskörű hozzáférése van az oldal adminisztrációs funkcióihoz és beállításaihoz. 
@@ -27,7 +33,30 @@ Az UniPass kártya olvasását a készülékekben található NFC (Near Field Co
 
 ![UniPass](https://unideb.toxy.hu/icons/unipass.png)
 
-## PWA
-A PWA (Progressive Web App) egy olyan webalkalmazás, amely ötvözi a hagyományos weboldalak és a natív mobilalkalmazások előnyeit.
+## Adatbázis
+Az adatbázis három fő táblát tartalmaz: szekrények (lockers), felhasználók (users) és beállítások (settings).
 
-![Screenshots](https://unideb.toxy.hu/icons/pwamerged.png)
+![Database](https://unideb.toxy.hu/icons/adatb.png)
+
+Szekrények (lockers) tábla:
+- id: Ez egy egyedi azonosító, amely minden szekrényhez hozzá van rendelve. Automatikusan növekszik, és egyedi azonosítót biztosít a szekrények számára.
+- status: Ez a mező lehetőséget ad arra, hogy nyomon kövessük a szekrények állapotát. Két értéke lehet: "off" vagy "on". Ezek a státuszok azt jelzik, hogy a szekrény éppen elérhető vagy foglalt.
+- NeptunCode: Ez a mező tartalmazza a hallgató Neptun kódját, aki éppen használja a szekrényt. Ez lehetővé teszi a szekrényhasználat nyomon követését és a felhasználók azonosítását.
+- UniPassCode: Ez a mező tárolja a hallgató Unipass kártya kódját, ami szintén segít azonosítani a felhasználót a kártyával történő szekrény nyitás közben.
+
+Felhasználók (users) tábla:
+- id: Ez a mező hasonlóan az előzőhöz egy egyedi azonosító, amely minden felhasználóhoz tartozik.
+- VName és KName: Ezek a mezők tárolják a felhasználók vezeték és keresztnevét.
+- Email: Az email cím segíti az azonosítást és a kapcsolattartást a felhasználókkal.
+- Password: A jelszó biztonságosan eltárolva lehetővé teszi a felhasználók bejelentkezését.
+- NeptunCode: Ez a mező tárolja a felhasználó Neptun kódját, ami egy másik azonosítási mód, illetve a belépéshez szükséges.
+- UniPassCode: a regisztrációkor beolvasott Unipass kártya azonosítóját tároljuk el.
+- CreatedAT: Ez a mező rögzíti azt az időpontot, amikor a felhasználó létrehozta a fiókját.
+- Rank: A felhasználók rangja lehet "Student" vagy "Admin", és ezzel a jogosultságokat szabályozhatod. Az "Admin" rangú felhasználók például: további funkciókhoz vagy jogosultságokhoz férnek hozzá.
+
+Beállítások (settings) tábla:
+- id: szintén egy egyedi azonosító.
+- settingsName: Ez a mező tárolja a beállítás nevét, amelyet később az alkalmazásban használhatsz.
+- value: A beállítás értéke ebben a mezőben van tárolva, és lehetővé teszi a konfigurációs beállítások könnyű módosítását és kezelését.
+
+
