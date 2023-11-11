@@ -1,9 +1,33 @@
-# UniLocker készülőben...
-## Téma általános leírása
-Az általam készítendő projekt egy PWA (Progressive Web App) típusú alkalmazás, amely egy API segítségével összekapcsolódik egy ESP8266/ESP-12E eszközzel, ez egy olyan modul, amely segítségével lehetővé válik a kommunikáció a webalkalmazás és az eszköz között az interneten keresztül. Az alkalmazás fő célja mini elektromos zárak kezelése és azok vezérlése.
-A felhasználóknak lehetőségük van regisztrálni az alkalmazásban, az adatok egy adatbázisban kerülnek eltárolásra. A regisztráció során a felhasználóknak meg kell adniuk az alábbi adatokat: vezeték és keresztnév, email, jelszó, Neptun kód, illetve opcionálisan az UniPass kártya azonosítóját.
-Az UniPass kártyát az alábbi módon lehet megadni: a felhasználó eszközén engedélyezni kell az NFC-t, majd szimplán csak a telefon hátoldalához tartani a kártyát, a felhasználó visszajelzést kap, hogy sikeres volt-e a beolvasás, ha igen akkor szintén eltárolásra kerül.
-Amikor a felhasználók szeretnék használni a szekrényeket, az alkalmazásban láthatják az éppen elérhetőket, ott kitudják választani a számukra megfelelőt, és onnan kezelhetik. Az UniPass kártyájukkal is nyithatják a szekrényt, csak hozzá kell érinteni a leolvasóhoz, de az alkalmazásban is lehetőségük van a nyitásra. Az alkalmazás szerver oldali logikája ellenőrzi az adatbázisban a felhasználókat, és ha rendelkeznek az adott szekrény kinyitásához szükséges jogosultsággal, akkor megengedi a szekrény kinyitását.
-Az alkalmazás megvalósítása során fontos a biztonság. Az adatok tárolására és az adatátvitelre biztonságos protokollokat kell használnunk. Emellett fontos az is, hogy csak azok a felhasználók férjenek hozzá az adatokhoz és szolgáltatásokhoz, akik valóban jogosultak rá.
-Az általam készített alkalmazás nagy előnye, hogy webes alkalmazásként elérhető, így a felhasználók számára nincs szükség külön alkalmazás telepítésére. 
 
+# UniLocker
+
+Célkitűzésem volt, hogy egy olyan platformot hozzak létre, amely lehetővé teszi a hallgatók számára, hogy könnyedén és biztonságosan használják az egyetemi szekrényeket. Az alkalmazás lehetővé teszi a felhasználók számára a regisztrációt és az azonosítást, ideértve az UniPass kártyák használatát is, amelyek segítségével egy egyszerű érintéssel nyithatják ki a szekrényeiket. 
+
+![Mockup](https://unideb.toxy.hu/icons/mockup.png)
+
+## Leírás
+
+Az UniLocker projekt egy olyan progresszív webalkalmazás, amelynek célja, hogy az oktatási intézményekben elérhető szekrények kezelését és vezérlését egyszerűsítse és biztonságossá tegye. A projekt egyesíti a modern webfejlesztési technológiák és az IoT (Internet of Things) eszközök világát.
+
+### Az alkalmazás két fő része:
+- Az első rész a webes felület, mely lehetővé teszi a felhasználók számára a szekrények kiválasztását és kezelését, valamint az azonosítást és regisztrációt.
+
+- A második rész pedig az eszközökkel történő kommunikációt szolgálja, amelyek az egyetemi szekrényeket irányítják. Az alkalmazás lényeges eleme a biztonság, amely magába foglalja az adatok, tárgyak - tulajdonok védelmét és az azonosítás megbízhatóságát. Csak azok a felhasználók férnek hozzá az adatokhoz és jogosultságokhoz, akik erre valóban jogosultak.
+
+![Connection](https://unideb.toxy.hu/icons/connection.png)
+
+## Admin felület
+
+Az Adminisztrátor rang azt jelzi, hogy az adott felhasználó az oldal egyik legmagasabb szintű jogosultságával rendelkezik, és így teljeskörű hozzáférése van az oldal adminisztrációs funkcióihoz és beállításaihoz. 
+
+![UniPass](https://unideb.toxy.hu/icons/adminoldal.png)
+
+## NFC 
+Az UniPass kártya olvasását a készülékekben található NFC (Near Field Communication) technológiával valósítottam meg. Az NFC egy vezeték nélküli kommunikációs technológia, amely lehetővé teszi az adatcserét rövid távolságon belül. Ennek segítségével az UniPass kártyák olvasása és az azokon található információk beolvasása gyors és hatékony módon történhet. 
+
+![UniPass](https://unideb.toxy.hu/icons/unipass.png)
+
+## PWA
+A PWA (Progressive Web App) egy olyan webalkalmazás, amely ötvözi a hagyományos weboldalak és a natív mobilalkalmazások előnyeit.
+
+![Screenshots](https://unideb.toxy.hu/icons/pwamerged.png)
